@@ -1,0 +1,14 @@
+.static-hero::before,
+.static-hero-s2::before,
+.static-hero-s3::before,
+.wpo-hero-slider::before {
+  content: none !important; /* removes it entirely */
+  background: none !important;
+}
+
+
+.wpo-site-footer::before {
+    content: none !important;   /* removes any pseudo-element */
+    background: none !important; /* removes any background it might have */
+  }
+  
