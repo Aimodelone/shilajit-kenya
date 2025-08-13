@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <div>
       <Head>
-        <title>Politian - Political Campaign Next Js Template</title>
+        <title>Kenya Shilajit - Natural Energy & Health Supplement</title>
       </Head>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>

@@ -10,10 +10,9 @@ const About = (props) => {
                     <div className="row align-items-center">
                         <div className="col-lg-6 col-md-12 col-12">
                             <div className="wpo-about-img">
-                                <Image src={props.abimg} alt="" />
+                                <Image src={props.abimg} alt="Shilajit" />
                                 <div className="wpo-about-img-text">
-                                    <h4>1998</h4>
-
+                                    <h4>Ages</h4>
                                     <div className="rotate-text">
                                         <span>W</span>
                                         <span>e</span>
@@ -59,28 +58,23 @@ const About = (props) => {
                         <div className="col-lg-6 col-md-12 col-12">
                             <div className="wpo-about-text">
                                 <div className="wpo-section-title">
-                                    <span>About Politian</span>
-                                    <h2>We Can Work Together For Create a Better Future.</h2>
+                                    <span>About Shilajit</span>
+                                    <h2>The Ancient Natural Resin That Boosts Energy and Vitality</h2>
                                 </div>
-                                <p>The leader is eager to listen to the needs of the youth generation and to hear what
-                                    solutions they have to the problems they are facing. He hopes to find solutions that
-                                    will help them lead meaningful lives and make lasting change in the world. </p>
-                                <p>He believes that the collaboration between the youth and the leaders of society is
-                                    necessary to bring about a brighter future. Now, he is ready to take the first step
-                                    to making that happen.</p>
+                                <p>Shilajit is a mineral-rich resin that has been used for centuries in traditional medicine to enhance energy, vitality, and overall wellness. It is harvested from the high-altitude rocks of the Himalayas and contains fulvic acid, humic acid, and over 80 essential minerals.</p>
+                                <p>This powerful substance is known to support cognitive function, improve stamina, and promote cellular regeneration. Regular use can help combat fatigue, improve immunity, and enhance overall physical performance.</p>
                                 <div className="quote">
-                                    <p>“We can start by taking small steps and making small changes that can have a big
-                                        impact on the world.”</p>
+                                    <p>“Nature provides the ultimate energy booster in Shilajit — unlocking vitality from within.”</p>
                                 </div>
                                 <div className="wpo-about-left-info">
                                     <div className="wpo-about-left-inner">
                                         <div className="wpo-about-left-text">
-                                            <h5>Robert Willum</h5>
-                                            <span>CEO & Founder of Manit</span>
+                                            <h5>Natural Wellness</h5>
+                                            <span>Ancient Health Tradition</span>
                                         </div>
                                     </div>
                                     <div className="signeture">
-                                        <Image src={sign} alt="" />
+                                        <Image src={sign} alt="Signature" />
                                     </div>
                                 </div>
                             </div>

@@ -12,7 +12,7 @@ const TeamSection = (props) => {
     return (
         <section className={`wpo-team-section section-padding ${props.tmClass}`}>
             <div className="container">
-                <SectionTitle subTitle={'Our Team'} Title={'Meet Our City Council'} />
+                <SectionTitle subTitle={'PRODUCTS'} Title={'Our Popular Products'} />
                 <div className="wpo-team-wrap">
                     <div className="row">
                         {Team.map((team, aitem) => (
@@ -30,7 +30,7 @@ const TeamSection = (props) => {
                                     </div>
                                     <div className="wpo-team-text">
                                         <h2><Link onClick={ClickHandler} href={'/team-single/[slug]'} as={`/team-single/${team.slug}`}>{team.name}</Link></h2>
-                                        <span>{team.title}</span>
+                                        <span style={{ fontSize: '24px', fontWeight: 'bold' }}>{team.title}</span>
                                     </div>
                                 </div>
                             </div>
