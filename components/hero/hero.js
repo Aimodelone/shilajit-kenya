@@ -29,7 +29,7 @@ const Hero = () => {
                             </div>
                             <div className="clearfix"></div>
                             <div data-swiper-parallax="500" className="slide-btns">
-                                 <Link onClick={ClickHandler} href="/products" className="theme-btn" style={{ color: '#000' }}>
+                                 <Link onClick={ClickHandler} href="#" className="theme-btn" style={{ color: '#000' }}>
                                      Shop Shilajit Now
                                  </Link>
                             </div>
