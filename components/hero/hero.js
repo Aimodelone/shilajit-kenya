@@ -10,29 +10,31 @@ const Hero = () => {
     }
 
     return (
-        <section className="static-hero" style={{ background: '#000', color: '#fff' }}> {/* Black background & white text */}
+        <section className="static-hero" style={{ background: '#000', color: '#fff' }}>
             <div className="hero-container">
                 <div className="hero-inner">
                     <div className="container-fluid">
                         <div className="hero-content">
                             <div data-swiper-parallax="300" className="slide-title-sub">
-                                <span style={{ color: '#fff' }}>We Are Waiting For You</span>
+                                <span style={{ color: '#fff' }}>Pure Himalayan Power</span>
                             </div>
                             <div data-swiper-parallax="300" className="slide-title">
-                                <h2 style={{ color: '#fff' }}>Lets Make The World Great Again</h2>
+                                <h2 style={{ color: '#fff' }}>Unlock Your Energy & Vitality</h2>
                             </div>
                             <div data-swiper-parallax="400" className="slide-text">
                                 <p style={{ color: '#fff' }}>
-                                    We can start by taking small steps and making small changes that can have a big
-                                    impact on the world.
+                                    Experience the ancient natural supplement Shilajit — packed with minerals and fulvic acid
+                                    to boost stamina, focus, and overall wellness every day.
                                 </p>
                             </div>
                             <div className="clearfix"></div>
                             <div data-swiper-parallax="500" className="slide-btns">
-                                 <Link onClick={ClickHandler} href="/about" className="theme-btn" style={{ color: '#000' }}>Join The Campaign</Link>
+                                 <Link onClick={ClickHandler} href="/products" className="theme-btn" style={{ color: '#000' }}>
+                                     Shop Shilajit Now
+                                 </Link>
                             </div>
                             <div className="politian-pic">
-                                <Image src={hero1} alt="" />
+                                <Image src={hero1} alt="Shilajit Hero" />
                                 <div className="politian-shape">
                                     <div className="shape-1"></div>
                                     <div className="shape-2"></div>
