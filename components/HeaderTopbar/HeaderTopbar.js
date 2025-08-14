@@ -19,20 +19,14 @@ const HeaderTopbar = () => {
                                 </div>
                                 <div className="info-text">
                                     <span>Call Us:</span>
-                                    <p>+(684) 555-0102</p>
+                                    <p>+254 793 313743</p>
                                 </div>
                             </div>
                             <div className="contact-info">
-                                <div className="icon">
-                                    <i className="fi flaticon-email"></i>
-                                </div>
-                                <div className="info-text">
-                                    <span>E-mail Now:</span>
-                                    <p>politian@gmail.com</p>
-                                </div>
+
                             </div>
                             <div className="contact-info">
-                                <Link className="theme-btn" href="/donate">Donate Now</Link>
+                                <Link className="theme-btn" href="#">Buy Now</Link>
                             </div>
                         </div>
                     </div>

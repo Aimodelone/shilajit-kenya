@@ -1,27 +1,52 @@
-
-import React, { useState } from 'react'
-import ModalVideo from 'react-modal-video'
-import '../../node_modules/react-modal-video/scss/modal-video.scss';
-
+import React from 'react';
 
 const VideoModal = () => {
-  
-  const [isOpen, setOpen] = useState(false)
-
   return (
     <React.Fragment>
-      <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId="2lmv6ZDm0vw" onClose={() => setOpen(false)} />
-
       <div className="video-btn">
         <ul>
           <li>
-            <button className="btn-wrap" onClick={() => setOpen(true)}><i className="fi flaticon-play" aria-hidden="true"></i></button>
+            {/* Button still visible but does nothing */}
+            <button className="btn-wrap" onClick={() => {}}>
+              <i className="fi flaticon-play" aria-hidden="true"></i>
+            </button>
           </li>
         </ul>
       </div>
-
     </React.Fragment>
   )
 }
 
 export default VideoModal;
+
+
+//import React, { useState } from 'react'
+//import ModalVideo from 'react-modal-video'
+//import '../../node_modules/react-modal-video/scss/modal-video.scss';
+
+
+
+
+
+
+//const VideoModal = () => {
+
+  //const [isOpen, setOpen] = useState(false)
+
+ // return (
+   // <React.Fragment>
+    //  <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId="2lmv6ZDm0vw" onClose={() => setOpen(false)} />
+
+    //  <div className="video-btn">
+    //    <ul>
+    //      <li>
+     //       <button className="btn-wrap" onClick={() => setOpen(true)}><i className="fi flaticon-play" aria-hidden="true"></i></button>
+     //     </li>
+      //  </ul>
+   //   </div>
+
+   // </React.Fragment>
+//  )
+//}
+
+//export default VideoModal;

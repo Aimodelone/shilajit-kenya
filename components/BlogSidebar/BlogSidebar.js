@@ -43,14 +43,6 @@ const BlogSidebar = (props) => {
                         </div>
                     </form>
                 </div>
-                <div className="widget category-widget">
-                    <h3>Post Categories</h3>
-                    <ul>
-                        {Services.slice(0, 5).map((service, Sitem) => (
-                            <li key={Sitem}><Link onClick={ClickHandler} href={'/service-single/[slug]'} as={`/service-single/${service.slug}`}>{service.sTitle}</Link></li>
-                        ))}
-                    </ul>
-                </div>
                 <div className="widget recent-post-widget">
                     <h3>Related Posts</h3>
                     <div className="posts">
@@ -70,14 +62,15 @@ const BlogSidebar = (props) => {
                 <div className="widget tag-widget">
                     <h3>Tags</h3>
                     <ul>
-                        <li><Link onClick={ClickHandler} href="/blog-single/support-progressive-change">ELECTION</Link></li>
-                        <li><Link onClick={ClickHandler} href="/blog-single/support-progressive-change">Campaign</Link></li>
-                        <li><Link onClick={ClickHandler} href="/blog-single/support-progressive-change">STATEMENT</Link></li>
-                        <li><Link onClick={ClickHandler} href="/blog-single/support-progressive-change">POLITICS</Link></li>
-                        <li><Link onClick={ClickHandler} href="/blog-single/support-progressive-change">PRESS</Link></li>
-                        <li><Link onClick={ClickHandler} href="/blog-single/support-progressive-change">SOCIAL</Link></li>
-                        <li><Link onClick={ClickHandler} href="/blog-single/support-progressive-change">SECURITY</Link></li>
-                        <li><Link onClick={ClickHandler} href="/blog-single/support-progressive-change">VOTE</Link></li>
+                    <li><Link onClick={ClickHandler} href="/blog-single/support-progressive-change">Shilajit Resin</Link></li>
+                    <li><Link onClick={ClickHandler} href="/blog-single/Like-the-internet">Shilajit Gummies</Link></li>
+                    <li><Link onClick={ClickHandler} href="/blog-single/support-progressive-change">8-in-1 Capsules</Link></li>
+                    <li><Link onClick={ClickHandler} href="/blog-single/support-progressive-change">Energy & Vitality</Link></li>
+                    <li><Link onClick={ClickHandler} href="/blog-single/support-progressive-change">Mental Clarity</Link></li>
+                    <li><Link onClick={ClickHandler} href="/blog-single/support-progressive-change">Hormonal Balance</Link></li>
+                    <li><Link onClick={ClickHandler} href="/blog-single/support-progressive-change">Immunity Boost</Link></li>
+                    <li><Link onClick={ClickHandler} href="/blog-single/support-progressive-change">Overall Wellness</Link></li>
+
                     </ul>
                 </div>
                 <div className="wpo-contact-widget widget">

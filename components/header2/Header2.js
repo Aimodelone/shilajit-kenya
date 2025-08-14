@@ -39,66 +39,18 @@ const Header2 = (props) => {
                                     <ul className="nav navbar-nav mb-2 mb-lg-0">
                                         <li className="menu-item-has-children">
                                             <Link onClick={ClickHandler} href="/">Home</Link>
-                                            <ul className="sub-menu">
-                                                <li><Link onClick={ClickHandler} href="/home">Main Home</Link></li>
-                                                <li><Link onClick={ClickHandler} href="/home2">Election Home</Link></li>
-                                                <li><Link onClick={ClickHandler} href="/home3">Male Candidate</Link></li>
-                                                <li><Link onClick={ClickHandler} href="/home4">Female Candidate</Link></li>
-                                            </ul>
                                         </li>
                                         <li><Link onClick={ClickHandler} href="/about">About us</Link></li>
-                                        <li className="menu-item-has-children">
-                                            <Link onClick={ClickHandler} href="/">Campaign</Link>
-                                            <ul className="sub-menu">
-                                                <li><Link onClick={ClickHandler} href="/campaign">Campaign Style 1</Link></li>
-                                                <li><Link onClick={ClickHandler} href="/campaign-2">Campaign Style 2</Link></li>
-                                                <li><Link onClick={ClickHandler} href="/campaign-3">Campaign Style 3</Link></li>
-                                                <li><Link onClick={ClickHandler} href="/campaign-single/Support-for-Womans">Campaign single</Link></li>
-                                            </ul>
-                                        </li>
                                         <li className="menu-item-has-children">
                                             <Link onClick={ClickHandler} href="/">Pages</Link>
                                             <ul className="sub-menu">
                                                 <li><Link onClick={ClickHandler} href="/gallery">Gallery</Link></li>
-                                                <li><Link onClick={ClickHandler} href="/testimonial">Testimonial</Link></li>
-                                                <li><Link onClick={ClickHandler} href="/team">Team</Link></li>
-                                                <li><Link onClick={ClickHandler} href="/team-single/Esther-Howard">Team Single</Link></li>
-                                                <li className="menu-item-has-children">
-                                                    <Link onClick={ClickHandler} href="/">Services</Link>
-                                                    <ul className="sub-menu">
-                                                        <li><Link onClick={ClickHandler} href="/service">Services</Link></li>
-                                                        <li><Link onClick={ClickHandler} href="/service-single/Economic-Establishment">Services Single</Link></li>
-                                                    </ul>
-                                                </li>
-                                                <li><Link onClick={ClickHandler} href="/shop">Shop</Link></li>
-                                                <li><Link onClick={ClickHandler} href="/product-single/The-Audacity-of-Hope">Shop Single</Link></li>
-                                                <li><Link onClick={ClickHandler} href="/cart">Cart</Link></li>
-                                                <li><Link onClick={ClickHandler} href="/checkout">Checkout</Link></li>
+                                                <li><Link onClick={ClickHandler} href="/team">Products</Link></li>
                                                 <li><Link onClick={ClickHandler} href="/faq">FAQ</Link></li>
-                                                <li><Link onClick={ClickHandler} href="/volunteer">Volunteer</Link></li>
-                                                <li><Link onClick={ClickHandler} href="/404">404 Error</Link></li>
-                                                <li><Link onClick={ClickHandler} href="/login">Login</Link></li>
-                                                <li><Link onClick={ClickHandler} href="/register">Register</Link></li>
                                             </ul>
                                         </li>
                                         <li className="menu-item-has-children">
-                                            <Link onClick={ClickHandler} href="/">Blog</Link>
-                                            <ul className="sub-menu">
-                                                <li><Link onClick={ClickHandler} href="/blog">Blog right sidebar</Link></li>
-                                                <li><Link onClick={ClickHandler} href="/blog-left-sidebar">Blog left sidebar</Link></li>
-                                                <li><Link onClick={ClickHandler} href="/blog-fullwidth">Blog fullwidth</Link></li>
-                                                <li className="menu-item-has-children">
-                                                    <Link onClick={ClickHandler} href="/">Blog details</Link>
-                                                    <ul className="sub-menu">
-                                                        <li><Link onClick={ClickHandler} href="/blog-single/support-progressive-change">Blog details right sidebar</Link>
-                                                        </li>
-                                                        <li><Link onClick={ClickHandler} href="/blog-single-left-sidebar/support-progressive-change">Blog details left
-                                                            sidebar</Link></li>
-                                                        <li><Link onClick={ClickHandler} href="/blog-single-fullwidth/support-progressive-change">Blog details
-                                                            fullwidth</Link></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
+                                            <Link onClick={ClickHandler} href="/blog">Blog</Link>
                                         </li>
                                         <li><Link onClick={ClickHandler} href="/contact">Contact</Link></li>
                                     </ul>
@@ -122,19 +74,9 @@ const Header2 = (props) => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="language">
-                                        <select name="language" id="language">
-                                            <option value="English">English</option>
-                                            <option value="Arabic">Arabic</option>
-                                            <option value="Japanese">Japanese</option>
-                                            <option value="Spanish">Spanish</option>
-                                        </select>
-                                    </div>
                                     <div className="social">
                                         <ul>
                                             <li><Link href="/"><i className="fi flaticon-facebook-app-symbol"></i></Link></li>
-                                            <li><Link href="/"><i className="fi flaticon-twitter"></i></Link></li>
-                                            <li><Link href="/"><i className="fi flaticon-linkedin"></i></Link></li>
                                             <li><Link href="/"><i className="fi flaticon-instagram-1"></i></Link></li>
                                         </ul>
                                     </div>

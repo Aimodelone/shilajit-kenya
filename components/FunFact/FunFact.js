@@ -23,26 +23,26 @@ const FunFact = (props) => {
                             <div className="wpo-fun-fact-grids clearfix">
                                 <div className="grid">
                                     <div className="info">
-                                        <h3><span><CountUp end={35} enableScrollSpy /></span>K</h3>
-                                        <p>Total People lived in our city</p>
+                                        <h3><span><CountUp end={2000} enableScrollSpy /></span>+</h3>
+                                        <p>Improved energy and vitality with Shilajit</p>
                                     </div>
                                 </div>
                                 <div className="grid">
                                     <div className="info">
-                                        <h3><span><CountUp end={12} enableScrollSpy /></span>K</h3>
-                                        <p>Square kilometers region covers</p>
+                                        <h3><span><CountUp end={500} enableScrollSpy /></span>+</h3>
+                                        <p>People reporting better mental clarity</p>
                                     </div>
                                 </div>
                                 <div className="grid">
                                     <div className="info">
-                                        <h3><span><CountUp end={25} enableScrollSpy /></span>%</h3>
-                                        <p>Private & domestic garden land</p>
+                                        <h3><span><CountUp end={300} enableScrollSpy /></span>+</h3>
+                                        <p>Improved immunity and well-being</p>
                                     </div>
                                 </div>
                                 <div className="grid">
                                     <div className="info">
-                                        <h3><span><CountUp end={8} enableScrollSpy /></span>th</h3>
-                                        <p>Average Costs of Home Ownership</p>
+                                        <h3><span><CountUp end={250} enableScrollSpy /></span>+</h3>
+                                        <p>People experiencing hormonal balance support</p>
                                     </div>
                                 </div>
                             </div>

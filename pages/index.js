@@ -1,10 +1,8 @@
 import React, {Fragment} from 'react';
 import Navbar from '../components/Navbar/Navbar'
 import Hero from '../components/hero/hero';
-import Features from '../components/Features/Features';
 import About from '../components/about/about';
 import ServiceSection from '../components/ServiceSection/ServiceSection';
-import CampaignSection from '../components/CampaignSection/CampaignSection';
 import Testimonial from '../components/Testimonial/Testimonial';
 import FunFact from '../components/FunFact/FunFact';
 import TeamSection from '../components/TeamSection/TeamSection';
@@ -30,7 +28,7 @@ const HomePage =() => {
             <BlogSection/>
             <InstagramSection/>
             <PartnerSection/>
-            <Footer/> 
+            <Footer/>
             <Scrollbar/>
         </Fragment>
     )

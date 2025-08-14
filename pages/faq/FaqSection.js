@@ -11,7 +11,6 @@ const FaqSection = (props) => {
         setExpanded(isExpanded ? panel : false);
     };
 
-
     return (
         <div className="wpo-benefits-section">
             <div className="row">
@@ -23,11 +22,11 @@ const FaqSection = (props) => {
                                 aria-controls="panel1bh-content"
                                 id="panel1bh-header"
                             >
-                                <Typography>Market research on our global panel with support from our experts.</Typography>
+                                <Typography>What is Shilajit and how does it work?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
-                                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum exercitationem pariatur iure nemo esse repellendus est quo recusandae. Delectus, maxime.
+                                    Shilajit is a natural resin packed with minerals and fulvic acid that helps boost energy, vitality, and overall wellness when taken consistently.
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
@@ -37,11 +36,11 @@ const FaqSection = (props) => {
                                 aria-controls="panel2bh-content"
                                 id="panel2bh-header"
                             >
-                                <Typography>Planning can help alleviate workplace stress and increase productivity.</Typography>
+                                <Typography>Can Shilajit improve mental clarity?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum exercitationem pariatur iure nemo esse repellendus est quo recusandae. Delectus, maxime.
+                                    Many users report enhanced focus, memory, and mental clarity after using Shilajit regularly as part of their daily routine.
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
@@ -51,12 +50,11 @@ const FaqSection = (props) => {
                                 aria-controls="panel3bh-content"
                                 id="panel3bh-header"
                             >
-                                <Typography>Those who experiment the most, are able to innovate the best.</Typography>
-                
+                                <Typography>How does Shilajit support energy and stamina?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum exercitationem pariatur iure nemo esse repellendus est quo recusandae. Delectus, maxime.
+                                    Shilajit helps improve physical performance and reduces fatigue by delivering essential minerals and nutrients to the body.
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
@@ -66,11 +64,11 @@ const FaqSection = (props) => {
                                 aria-controls="panel4bh-content"
                                 id="panel4bh-header"
                             >
-                                <Typography>Understand Your Problem, You must understand the issue.</Typography>
+                                <Typography>Is Shilajit safe for daily use?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum exercitationem pariatur iure nemo esse repellendus est quo recusandae. Delectus, maxime.
+                                    When sourced from a reliable supplier and used as directed, Shilajit is safe and supports overall health and hormonal balance.
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
@@ -78,7 +76,6 @@ const FaqSection = (props) => {
                 </div>
             </div>
         </div>
-
     )
 }
 

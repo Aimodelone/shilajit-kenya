@@ -20,7 +20,6 @@ const AboutPage = () => {
             <PageTitle pageTitle={'About Us'} pagesub={'About'} />
             <About abimg={abimg} abClass={"pt-padding"}/>
             <ServiceSection />
-            <CampaignSection />
             <Testimonial />
             <FunFact />
             <TeamSection />

@@ -113,9 +113,9 @@ const BlogSingle = (props) => {
                     <span>Share: </span>
                     <ul>
                       {/* Ideally tags would be dynamic; here I'm using static example tags */}
-                      <li><Link href="/blog-single/support-progressive-change">Election</Link></li>
-                      <li><Link href="/blog-single/support-progressive-change">Vote</Link></li>
-                      <li><Link href="/blog-single/support-progressive-change">Political</Link></li>
+                      <li><Link href="/blog-single/support-progressive-change">Health</Link></li>
+                      <li><Link href="/blog-single/support-progressive-change">Fitness</Link></li>
+                      <li><Link href="/blog-single/support-progressive-change">Nutrition</Link></li>
                     </ul>
                   </div>
                 </div>

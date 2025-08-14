@@ -1,11 +1,11 @@
 import React from 'react'
-import Link from 'next/link'
 import Team from '../../api/team'
 import SectionTitle from '../SectionTitle/SectionTitle';
 import Image from 'next/image';
 
-const ClickHandler = () => {
-    window.scrollTo(10, 0);
+const ClickHandler = (e) => {
+    e.preventDefault(); // prevent default link behavior
+    window.scrollTo(0, 0); // scroll to top
 }
 
 const TeamSection = (props) => {
@@ -20,22 +20,18 @@ const TeamSection = (props) => {
                                 <div className="wpo-team-item">
                                     <div className="wpo-team-img">
                                         <div className="wpo-team-img-box">
-                                            <Image src={team.tImg} alt="" />
-                                            <ul>
-                                                <li><Link onClick={ClickHandler} href="/"><i className="fi flaticon-facebook-app-symbol"></i></Link></li>
-                                                <li><Link onClick={ClickHandler} href="/"><i className="fi flaticon-twitter"></i></Link></li>
-                                                <li><Link onClick={ClickHandler} href="/"><i className="fi flaticon-linkedin"></i></Link></li>
-                                            </ul>
+                                            <Image src={team.tImg} alt={team.name} />
                                         </div>
                                     </div>
                                     <div className="wpo-team-text">
-                                        <h2><Link onClick={ClickHandler} href={'/team-single/[slug]'} as={`/team-single/${team.slug}`}>{team.name}</Link></h2>
+                                        <h2>
+                                            <a href="#" onClick={ClickHandler}>{team.name}</a>
+                                        </h2>
                                         <span style={{ fontSize: '24px', fontWeight: 'bold' }}>{team.title}</span>
                                     </div>
                                 </div>
                             </div>
                         ))}
-
                     </div>
                 </div>
             </div>

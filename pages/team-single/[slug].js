@@ -1,167 +1,215 @@
 import React, { Fragment } from 'react';
 import Navbar2 from '../../components/Navbar2/Navbar2';
-import PageTitle from '../../components/pagetitle/PageTitle';
-import Scrollbar from '../../components/scrollbar/scrollbar';
-import { useRouter } from 'next/router';
+import PageTitle from '../../components/pagetitle/PageTitle'
+import Scrollbar from '../../components/scrollbar/scrollbar'
+import { useRouter } from 'next/router'
 import Footer from '../../components/footer/Footer';
-import Teams from '../../api/team';
+import Team from '../../api/team';
+
+import crt1 from '/public/images/certificates/1.jpg'
+import crt2 from '/public/images/certificates/2.jpg'
+import crt3 from '/public/images/certificates/3.jpg'
+import crt4 from '/public/images/certificates/4.jpg'
 import Image from 'next/image';
 
-const TeamSinglePage = () => {
-  const router = useRouter();
-  const TeamDetails = Teams.find(item => item.slug === router.query.slug);
+const TeamSinglePage = (props) => {
 
-  if (!TeamDetails) return null;
+    const router = useRouter()
 
-  const SubmitHandler = (e) => e.preventDefault();
+    const TeamDetails = Team.find(item => item.slug === router.query.slug)
 
-  return (
-    <Fragment>
-      <Navbar2 />
-      <PageTitle pageTitle={TeamDetails.name} pagesub={TeamDetails.title} />
+    const SubmitHandler = (e) => {
+        e.preventDefault()
+    }
 
-      <div className="team-pg-area section-padding">
-        <div className="container">
-          <div className="team-single-wrap">
 
-            {/* Team Info */}
-            <div className="team-info-wrap">
-              <div className="row align-items-center">
-                <div className="col-lg-5">
-                  <div className="team-info-img">
-                    <Image src={TeamDetails.tSImg} alt={TeamDetails.name} />
-                  </div>
-                </div>
-                <div className="col-lg-7">
-                  <div className="team-info-text">
-                    <h2>{TeamDetails.name}</h2>
-                    <ul>
-                      <li>Position: <span>{TeamDetails.title}</span></li>
-                      <li>Experience: <span>{TeamDetails.experience}</span></li>
-                      <li>Address: <span>{TeamDetails.address}</span></li>
-                      <li>Phone: <span>{TeamDetails.phone}</span></li>
-                      <li>Email: <span>{TeamDetails.email}</span></li>
-                    </ul>
 
-                    {/* Certificates */}
-                    <div className="certificates-wrap">
-                      <h2>Certificates</h2>
-                      <div className="certificates-items">
-                        {TeamDetails.certificates.map((crt, i) => (
-                          <div className="certificates-item" key={i}>
-                            <Image src={crt} alt="Certificate" width={200} height={150} />
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+    return (
+        <Fragment>
+            <Navbar2 />
+            <PageTitle pageTitle={TeamDetails?.name} pagesub={TeamDetails?.title} />
+            <div className="team-pg-area section-padding">
+                <div className="container">
+                    <div className="team-single-wrap">
+                        <div className="team-info-wrap">
+                            <div className="row align-items-center">
+                                <div className="col-lg-5">
+                                    <div className="team-info-img">
+                                        <Image src={TeamDetails?.tSImg} alt=""/>
+                                    </div>
+                                </div>
+                                <div className="col-lg-7">
+                                    <div className="team-info-text">
+                                        <h2>Esther Howard</h2>
+                                        <ul>
+                                            <li>Position: <span>{TeamDetails?.title}</span></li>
+                                            <li>Experience:<span>12 Years</span></li>
+                                            <li>Address:<span>6391 Elgin St. Celina, Delaware 10299</span></li>
+                                            <li>Phone:<span>+00 568 746 987</span></li>
+                                            <li>Email:<span>youremail@gmail.com</span></li>
+                                        </ul>
 
-            {/* Experience and Education */}
-            <div className="team-exprience-area team-widget">
-              <div className="row">
-                <div className="col-lg-6">
-                  <div className="exprience-wrap">
-                    <h2>Personal Experience</h2>
-                    {TeamDetails.experienceDescription.map((exp, i) => (
-                      <p key={i}>{exp}</p>
-                    ))}
-                  </div>
-                </div>
+                                        <div className="certificates-wrap">
+                                            <h2>Certificates</h2>
 
-                <div className="col-lg-6">
-                  <div className="education-area">
-                    <h2>Education</h2>
-                    <ul>
-                      {TeamDetails.education.map((edu, i) => (
-                        <li key={i}>{edu}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              {/* Skills and Achievements */}
-              <div className="skills-area">
-                <div className="row">
-                  <div className="col-lg-6">
-                    <div className="exprience-wrap">
-                      <h2>Skills</h2>
-                      <div className="wpo-skill-section">
-                        <div className="wpo-skill-progress">
-                          {TeamDetails.skills.map((skill, i) => (
-                            <div className="wpo-progress-single" key={i}>
-                              <h5 className="progress-title">{skill.name}</h5>
-                              <div className="progress">
-                                <div className="progress-bar" role="progressbar" style={{ width: `${skill.value}%` }}></div>
-                              </div>
-                              <span className="progress-number">{skill.value}%</span>
+                                            <div className="certificates-items">
+                                                <div className="certificates-item">
+                                                    <Image src={crt1} alt=""/>
+                                                </div>
+                                                <div className="certificates-item">
+                                                    <Image src={crt2} alt=""/>
+                                                </div>
+                                                <div className="certificates-item">
+                                                    <Image src={crt3} alt=""/>
+                                                </div>
+                                                <div className="certificates-item">
+                                                    <Image src={crt4} alt=""/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                          ))}
                         </div>
-                      </div>
-                    </div>
-                  </div>
+                        <div className="team-exprience-area team-widget">
+                            <div className="row">
+                                <div className="col-lg-6">
+                                    <div className="exprience-wrap">
+                                        <h2>Personal Experience</h2>
+                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority
+                                            have suffered alteration in some form, by injected humour, or randomised words
+                                            which don’t look even slightly believable. If you are going to use a passage of
+                                            Lorem Ipsum, you need to be sure there isn’t anything embarrassing hidden in the
+                                            middle of text.</p>
+                                        <p>All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks
+                                            as necessary, making this the first true generator on the Internet. It uses a
+                                            dictionary of over 200 Latin words,</p>
+                                    </div>
+                                </div>
+                                <div className="col-lg-6">
+                                    <div className="education-area">
+                                        <h2>Education</h2>
+                                        <ul>
+                                            <li>Academy University School of Political Science, Boston, MA</li>
+                                            <li>Admization Institute of Political Science, Juzment School of
+                                                Management,Cambridge</li>
+                                            <li>The Syntify High School Of New York</li>
+                                            <li>Education & Political Admissions</li>
+                                            <li>Admization Institute of Political Science, Juzment
+                                                School of Management,Cambridge</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="skills-area">
+                                <div className="row">
+                                    <div className="col-lg-6">
+                                        <div className="exprience-wrap">
+                                            <h2>Skills</h2>
+                                            <div className="wpo-skill-section">
+                                                <div className="wpo-skill-progress">
+                                                    <div className="wpo-progress-single">
+                                                        <h5 className="progress-title">Political Science</h5>
+                                                        <div className="progress">
+                                                            <div className="progress-bar"
+                                                                role="progressbar" style={{width: `85%`}}>
+                                                            </div>
+                                                        </div>
+                                                        <span className="progress-number">85%</span>
+                                                    </div>
 
-                  <div className="col-lg-6">
-                    <div className="education-area ex-wiget">
-                      <h2>Achievements</h2>
-                      <ul>
-                        {TeamDetails.achievements.map((ach, i) => (
-                          <li key={i}>{ach}</li>
-                        ))}
-                      </ul>
+                                                    <div className="wpo-progress-single">
+                                                        <h5 className="progress-title">Education</h5>
+                                                        <div className="progress">
+                                                            <div className="progress-bar"
+                                                                data-wow-duration="0.7s" data-wow-delay=".3s"
+                                                                role="progressbar"  style={{width: `80%`}}>
+                                                            </div>
+                                                        </div>
+                                                        <span className="progress-number">80%</span>
+                                                    </div>
+
+                                                    <div className="wpo-progress-single">
+                                                        <h5 className="progress-title">Development</h5>
+                                                        <div className="progress">
+                                                            <div className="progress-bar"
+                                                                role="progressbar"  style={{width: `95%`}}>
+                                                            </div>
+                                                        </div>
+                                                        <span className="progress-number">95%</span>
+                                                    </div>
+                                                    <div className="wpo-progress-single">
+                                                        <h5 className="progress-title">Qualification</h5>
+                                                        <div className="progress">
+                                                            <div className="progress-bar"
+                                                                role="progressbar"  style={{width: `70%`}}>
+                                                            </div>
+                                                        </div>
+                                                        <span className="progress-number">70%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-6">
+                                        <div className="education-area ex-wiget">
+                                            <h2>Achievements</h2>
+                                            <ul>
+                                                <li>Best Political Science award 2017</li>
+                                                <li>Specials awards for Political activity 2018</li>
+                                                <li>Super Politician Top 50 Politician in USA</li>
+                                                <li>Young star Award at politician in 2021</li>
+                                                <li>Greatest Politician Top 10</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="wpo-contact-area ex-wiget">
+                            <div className="wpo-contact-title">
+                                <h2>Make an Appointment</h2>
+                                <p>Do not put off until tomorrow the problems that need to be solved today, especially
+                                    if it concerns your life!</p>
+                            </div>
+                            <div className="quote-form">
+                                <form onSubmit={SubmitHandler}>
+                                    <div className="form-group half-col">
+                                        <input type="text" className="form-control" placeholder="Name:" name="name" />
+                                    </div>
+                                    <div className="form-group half-col">
+                                        <input type="email" className="form-control" placeholder="Email:" name="email" />
+                                    </div>
+                                    <div className="form-group half-col">
+                                        <input type="text" className="form-control" placeholder="phone" name="phone" />
+                                    </div>
+                                    <div className="form-group half-col">
+                                        <select name="subject" className="form-control">
+                                            <option disabled="disabled" defaultValue={"Subject"}>Subject</option>
+                                            <option>River Development</option>
+                                            <option>Village Development</option>
+                                            <option>Road Development</option>
+                                            <option>Town Development</option>
+                                            <option>Social Development</option>
+                                        </select>
+                                    </div>
+                                    <div className="form-group full-col">
+                                        <textarea className="form-control" name="note"
+                                            placeholder="Case Discription"></textarea>
+                                    </div>
+                                    <div className="form-group full-col text-center">
+                                        <button className="btn theme-btn" type="submit">Appointment </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
-
-            {/* Appointment Form */}
-            <div className="wpo-contact-area ex-wiget">
-              <div className="wpo-contact-title">
-                <h2>Make an Appointment</h2>
-                <p>Do not put off until tomorrow the problems that need to be solved today, especially if it concerns your life!</p>
-              </div>
-              <div className="quote-form">
-                <form onSubmit={SubmitHandler}>
-                  <div className="form-group half-col">
-                    <input type="text" className="form-control" placeholder="Name:" name="name" />
-                  </div>
-                  <div className="form-group half-col">
-                    <input type="email" className="form-control" placeholder="Email:" name="email" />
-                  </div>
-                  <div className="form-group half-col">
-                    <input type="text" className="form-control" placeholder="Phone:" name="phone" />
-                  </div>
-                  <div className="form-group half-col">
-                    <select name="subject" className="form-control">
-                      <option disabled defaultValue="Subject">Subject</option>
-                      {TeamDetails.appointmentSubjects.map((subj, i) => (
-                        <option key={i}>{subj}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="form-group full-col">
-                    <textarea className="form-control" name="note" placeholder="Case Description"></textarea>
-                  </div>
-                  <div className="form-group full-col text-center">
-                    <button className="btn theme-btn" type="submit">Appointment</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <Footer />
-      <Scrollbar />
-    </Fragment>
-  );
+            <Footer />
+            <Scrollbar />
+        </Fragment>
+    )
 };
-
 export default TeamSinglePage;

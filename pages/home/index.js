@@ -21,10 +21,8 @@ const HomePage =() => {
         <Fragment>
             <Navbar hclass={'wpo-site-header-s1'} topbarNone={'topbar-none'} Logo={'/images/logo.png'}/>
             <Hero/>
-            <Features/>
             <About abimg={abimg}/>
             <ServiceSection/>
-            <CampaignSection/>
             <Testimonial/>
             <FunFact/>
             <TeamSection/>
