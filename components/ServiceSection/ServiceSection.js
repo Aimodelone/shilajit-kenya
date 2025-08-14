@@ -2,10 +2,8 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Link from 'next/link'
 import SectionTitle from "../SectionTitle/SectionTitle";
 import Services from '../../api/service'
-
 
 const settings = {
     dots: true,
@@ -60,7 +58,7 @@ const settings = {
 };
 
 const ClickHandler = () => {
-    window.scrollTo(10, 0);
+    window.scrollTo(0, 0); // scroll to top
 }
 
 const ServiceSection = (props) => {
@@ -77,7 +75,12 @@ const ServiceSection = (props) => {
                                         <div className="service-icon">
                                             <i className={`fi ${service.icon}`}></i>
                                         </div>
-                                        <h2><Link onClick={ClickHandler} href={'/service-single/[slug]'} as={`/service-single/${service.slug}`}>{service.sTitle}</Link></h2>
+                                        <h2>
+                                            {/* Click goes nowhere, just scrolls top */}
+                                            <a onClick={ClickHandler} href="#">
+                                                {service.sTitle}
+                                            </a>
+                                        </h2>
                                         <p>{service.description}</p>
                                     </div>
                                 </div>
