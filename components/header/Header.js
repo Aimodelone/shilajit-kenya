@@ -72,11 +72,20 @@ const Header = (props) => {
                                         </div>
                                     </div>
                                     <div className="close-form">
-                                        <Link onClick={ClickHandler} className="theme-btn" href="#"><span className="text">Buy Now</span>
+                                        <a
+                                            href="https://wa.me/254793313743?text=Hello%21%20%F0%9F%91%8B%20Thanks%20for%20contacting%20Kenya%20Shilajit.%20How%20can%20we%20help%20you%3F"
+                                            className="theme-btn"
+                                            style={{ color: "#000" }}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <span className="text">Buy Now</span>
                                             <span className="mobile">
-                                                <i className="fi flaticon-shopping-bag"></i>
-                                            </span></Link>
+                                            <i className="fi flaticon-shopping-bag"></i>
+                                            </span>
+                                        </a>
                                     </div>
+
                                 </div>
                             </div>
                         </div>

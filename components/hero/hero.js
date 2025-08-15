@@ -29,10 +29,17 @@ const Hero = () => {
                             </div>
                             <div className="clearfix"></div>
                             <div data-swiper-parallax="500" className="slide-btns">
-                                 <Link onClick={ClickHandler} href="#" className="theme-btn" style={{ color: '#000' }}>
-                                     Shop Shilajit Now
-                                 </Link>
+                            <a
+                                href="https://wa.me/254793313743?text=Hi%2C%20I%20want%20to%20order%20Shilajit"
+                                className="theme-btn"
+                                style={{ color: '#000' }}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Shop Shilajit Now
+                            </a>
                             </div>
+
                             <div className="politian-pic">
                                 <Image src={hero1} alt="Shilajit Hero" />
                                 <div className="politian-shape">
