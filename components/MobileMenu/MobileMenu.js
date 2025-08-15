@@ -107,9 +107,9 @@ const MobileMenu = () => {
 
             <div className="showmenu" onClick={() => setMenuState(!menuActive)}>
                 <button type="button" className="navbar-toggler open-btn">
-                    <span className="icon-bar first-angle"></span>
-                    <span className="icon-bar middle-angle"></span>
-                    <span className="icon-bar last-angle"></span>
+                <span className="icon-bar first-angle" style={{ backgroundColor: "#000" }}></span>
+                <span className="icon-bar middle-angle" style={{ backgroundColor: "#000" }}></span>
+                <span className="icon-bar last-angle" style={{ backgroundColor: "#000" }}></span>
                 </button>
             </div>
         </div>
