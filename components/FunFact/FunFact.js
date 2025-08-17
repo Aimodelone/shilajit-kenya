@@ -23,13 +23,13 @@ const FunFact = (props) => {
                             <div className="wpo-fun-fact-grids clearfix">
                                 <div className="grid">
                                     <div className="info">
-                                        <h3><span><CountUp end={2000} enableScrollSpy /></span>+</h3>
+                                        <h3><span><CountUp end={350} enableScrollSpy /></span>+</h3>
                                         <p>Improved energy and vitality with Shilajit</p>
                                     </div>
                                 </div>
                                 <div className="grid">
                                     <div className="info">
-                                        <h3><span><CountUp end={500} enableScrollSpy /></span>+</h3>
+                                        <h3><span><CountUp end={50} enableScrollSpy /></span>+</h3>
                                         <p>People reporting better mental clarity</p>
                                     </div>
                                 </div>

@@ -25,7 +25,6 @@ const FaqPage =() => {
                         </div>
                     </div>
                 </section>
-                <GetinTouch/>
             <Footer/>
             <Scrollbar/>
         </Fragment>

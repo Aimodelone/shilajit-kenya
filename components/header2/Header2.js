@@ -58,26 +58,10 @@ const Header2 = (props) => {
                             </div>
                             <div className="col-lg-5 col-md-2 col-2">
                                 <div className="header-right">
-                                    <div className="header-search-form-wrapper">
-                                        <div className="cart-search-contact">
-                                            <button onClick={() => setMenuState(!menuActive)} className="search-toggle-btn"><i
-                                                className={`fi ti-search ${menuActive ? "ti-close" : "fi "}`}></i></button>
-                                            <div className={`header-search-form ${menuActive ? "header-search-content-toggle" : ""}`}>
-                                                <form onSubmit={SubmitHandler}>
-                                                    <div>
-                                                        <input type="text" className="form-control"
-                                                            placeholder="Search here..." />
-                                                        <button type="submit"><i
-                                                            className="fi flaticon-search"></i></button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div className="social">
                                         <ul>
-                                            <li><Link href="/"><i className="fi flaticon-facebook-app-symbol"></i></Link></li>
-                                            <li><Link href="/"><i className="fi flaticon-instagram-1"></i></Link></li>
+                                            <li><Link href="https://facebook.com/shilajitkenya"><i className="fi flaticon-facebook-app-symbol"></i></Link></li>
+                                            <li><Link href="https://instagram.com/shilajitkenya"><i className="fi flaticon-instagram-1"></i></Link></li>
                                         </ul>
                                     </div>
                                 </div>

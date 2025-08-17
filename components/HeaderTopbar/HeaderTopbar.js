@@ -26,8 +26,16 @@ const HeaderTopbar = () => {
 
                             </div>
                             <div className="contact-info">
-                                <Link className="theme-btn" href="#">Buy Now</Link>
+                                <Link
+                                    className="theme-btn"
+                                    href="https://wa.me/254793313743?text=Welcome!%0A%0AWe%E2%80%99re%20now%20selling%20pure%20Himalayan%20Shilajit%20%E2%80%93%20known%20for%20boosting%20energy%20and%20vitality%20%E2%80%93%20for%20just%203500.%0A100%25%20natural%2C%20straight%20from%20the%20Himalayas%20mountains!%0A%0AWould%20you%20like%20to%20place%20an%20order%3F"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Buy Now
+                                </Link>
                             </div>
+
                         </div>
                     </div>
                 </div>

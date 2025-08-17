@@ -123,7 +123,7 @@ const Teams = [
         tSImg: tSimg4,
         slug: 'Devon-Lane',
         name: 'Shilajit 8 in 1 Capsules',
-        title: 'KES. 3,000/-',
+        title: 'KES. 5,000/-',
         experience: '15 Years',
         address: '456 Oak St, Dallas, TX 75201',
         phone: '+00 555 123 456',

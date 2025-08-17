@@ -28,12 +28,12 @@ const Footer = (props) => {
                                 <div className="social">
                                     <ul>
                                         <li>
-                                            <Link onClick={ClickHandler} href="/">
+                                            <Link onClick={ClickHandler} href="https://facebook.com/shilajitkenya">
                                                 <i className="fi flaticon-facebook-app-symbol"></i>
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link onClick={ClickHandler} href="/">
+                                            <Link onClick={ClickHandler} href="https://instagram.com/shilajitkenya">
                                                 <i className="fi flaticon-instagram-1"></i>
                                             </Link>
                                         </li>

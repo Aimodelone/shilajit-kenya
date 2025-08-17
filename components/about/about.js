@@ -11,42 +11,7 @@ const About = (props) => {
                         <div className="col-lg-6 col-md-12 col-12">
                             <div className="wpo-about-img">
                                 <Image src={props.abimg} alt="Shilajit" />
-                                <div className="wpo-about-img-text">
-                                    <h4>Ages</h4>
-                                    <div className="rotate-text">
-                                        <span>W</span>
-                                        <span>e</span>
-                                        <span>A</span>
-                                        <span>r</span>
-                                        <span>e</span>
-                                        <span>W</span>
-                                        <span>o</span>
-                                        <span>r</span>
-                                        <span>k</span>
-                                        <span>i</span>
-                                        <span>n</span>
-                                        <span>g</span>
-                                        <span>F</span>
-                                        <span>o</span>
-                                        <span>r</span>
-                                        <span>Y</span>
-                                        <span>o</span>
-                                        <span>u</span>
-                                        <span>S</span>
-                                        <span>i</span>
-                                        <span>n</span>
-                                        <span>c</span>
-                                        <span>e</span>
-                                    </div>
-                                    <div className="dots">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                    <div className="border-shape-1"></div>
-                                    <div className="border-shape-2"></div>
-                                    <div className="border-shape-3"></div>
-                                </div>
+                                
                                 <div className="about-shape">
                                     <div className="shape-1"></div>
                                     <div className="shape-2"></div>

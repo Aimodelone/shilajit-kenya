@@ -26,7 +26,6 @@ const HomePage =() => {
             <TeamSection/>
             <Donors/>
             <BlogSection/>
-            <InstagramSection/>
             <PartnerSection/>
             <Footer/>
             <Scrollbar/>
