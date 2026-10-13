@@ -4,7 +4,7 @@ import BlogSidebar from '../BlogSidebar/BlogSidebar.js'
 import VideoModal from '../ModalVideo/VideoModal'
 
 import blogs from '../../api/blogs'
-import Image from 'next/image.js';
+import Image from 'next/image';
 
 
 const ClickHandler = () =>{
@@ -42,15 +42,15 @@ const BlogList = (props) => {
                             <div className="pagination-wrapper pagination-wrapper-left">
                                 <ul className="pg-pagination">
                                     <li>
-                                        <Link href="/blog-left-sidebar" aria-label="Previous">
+                                        <Link href="/blog" aria-label="Previous">
                                             <i className="fi ti-angle-left"></i>
                                         </Link>
                                     </li>
-                                    <li className="active"><Link href="/blog-left-sidebar">1</Link></li>
-                                    <li><Link href="/blog-left-sidebar">2</Link></li>
-                                    <li><Link href="/blog-left-sidebar">3</Link></li>
+                                    <li className="active"><Link href="/blog">1</Link></li>
+                                    <li><Link href="/blog">2</Link></li>
+                                    <li><Link href="/blog">3</Link></li>
                                     <li>
-                                        <Link href="/blog-left-sidebar" aria-label="Next">
+                                        <Link href="/blog" aria-label="Next">
                                             <i className="fi ti-angle-right"></i>
                                         </Link>
                                     </li>

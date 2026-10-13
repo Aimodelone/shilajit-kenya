@@ -20,7 +20,7 @@ const Teams = [
         tSImg: tSimg1,
         slug: 'Esther-Howard',
         name: 'Shilajit Resin',
-        title: 'KES. 3,500/-',
+        title: 'KES. 3,900/-',
         experience: '12 Years',
         address: '6391 Elgin St. Celina, Delaware 10299',
         phone: '+00 568 746 987',

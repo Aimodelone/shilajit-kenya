@@ -102,7 +102,7 @@ const BlogSingle = (props) => {
                                     </Link>
                                 </div>
                                 <div className="next-post">
-                                    <Link href="/blog-left-sidebar">
+                                    <Link href="/blog">
                                         <span className="post-control-link">Next Post</span>
                                         <span className="post-name">Dignissimos ducimus qui blanditiis praesentiu deleniti atque corrupti quos dolores</span>
                                     </Link>
