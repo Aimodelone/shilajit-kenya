@@ -17,7 +17,7 @@
 
 'use strict';
 
-const { check } = require('./helpers');
+const { check, BASE_URL } = require('./helpers');
 
 // ── HTTP helper ────────────────────────────────────────────────────────────────
 async function apiReq(base, method, path, opts = {}) {
@@ -45,7 +45,7 @@ async function runCrudSuite(opts) {
     buildBody,
     requiredField,
     imageField,
-    base = 'http://localhost:3000',
+    base = BASE_URL,
     cookie,
   } = opts;
 
