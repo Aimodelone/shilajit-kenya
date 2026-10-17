@@ -4,8 +4,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test:api": "node --env-file=.env.local tests/admin-products.test.js"
+    "test:api": "node --env-file=.env.local tests/admin-products.test.js && node --env-file=.env.local tests/admin-benefits.test.js && node --env-file=.env.local tests/admin-blog.test.js"
   },
+
 
   "dependencies": {
     "@emotion/react": "^11.10.5",
