@@ -58,7 +58,7 @@ const Footer = (props) => {
                                     <h3>Shilajit</h3>
                                 </div>
                                 <ul>
-                                    <li><Link onClick={ClickHandler} href="/service">Shilajit Benefits</Link></li>
+                                    <li><Link onClick={ClickHandler} href="/benefits">Shilajit Benefits</Link></li>
                                     <li><Link onClick={ClickHandler} href="/products">Products</Link></li>
                                     <li><Link onClick={ClickHandler} href="/faq">FAQ</Link></li>
                                 </ul>

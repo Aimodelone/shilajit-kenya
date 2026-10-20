@@ -218,16 +218,16 @@ function BlogPreviewSection({ posts }) {
                   <div className="wpo-blog-content">
                     <ul>
                       <li>
-                        <Link href={`/blog-single/${post.slug}`} onClick={ClickHandler}>
+                        <Link href={`/blog/${post.slug}`} onClick={ClickHandler}>
                           {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-KE', { day: '2-digit', month: 'short', year: 'numeric' }) : ''}
                         </Link>
                       </li>
-                      <li>by: <Link onClick={ClickHandler} href={`/blog-single/${post.slug}`}>{post.author}</Link></li>
+                      <li>by: <Link onClick={ClickHandler} href={`/blog/${post.slug}`}>{post.author}</Link></li>
                     </ul>
                     <h2>
-                      <Link onClick={ClickHandler} href={`/blog-single/${post.slug}`}>{post.title}</Link>
+                      <Link onClick={ClickHandler} href={`/blog/${post.slug}`}>{post.title}</Link>
                     </h2>
-                    <Link className="more" onClick={ClickHandler} href={`/blog-single/${post.slug}`}>
+                    <Link className="more" onClick={ClickHandler} href={`/blog/${post.slug}`}>
                       Continue Reading
                     </Link>
                   </div>

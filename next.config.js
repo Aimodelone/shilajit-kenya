@@ -58,24 +58,37 @@ const nextConfig = {
       // Deleted gallery page → homepage
       { source: '/gallery', destination: '/', permanent: true },
 
-      // Deleted blog layout variants → canonical blog routes
-      { source: '/blog-fullwidth',                   destination: '/blog',             permanent: true },
-      { source: '/blog-left-sidebar',                destination: '/blog',             permanent: true },
-      { source: '/blog-single-fullwidth/:slug',      destination: '/blog-single/:slug', permanent: true },
-      { source: '/blog-single-left-sidebar/:slug',   destination: '/blog-single/:slug', permanent: true },
+      // Old blog layout variants → /blog (avoid chains by going direct)
+      { source: '/blog-fullwidth',                         destination: '/blog',         permanent: true },
+      { source: '/blog-left-sidebar',                      destination: '/blog',         permanent: true },
+      { source: '/blog-single-fullwidth/:slug',            destination: '/blog/:slug',   permanent: true },
+      { source: '/blog-single-left-sidebar/:slug',         destination: '/blog/:slug',   permanent: true },
 
-      // E-commerce / team pages → new /products routes
-      { source: '/team',                                           destination: '/products',                          permanent: true },
-      { source: '/shop',                                           destination: '/products',                          permanent: true },
-      { source: '/team-single/Esther-Howard',                      destination: '/products/shilajit-resin',           permanent: true },
-      { source: '/team-single/Guy-Hawkins',                        destination: '/products/shilajit-capsules',        permanent: true },
-      { source: '/team-single/Robert-Fox',                         destination: '/products/shilajit-gummies',         permanent: true },
-      { source: '/team-single/Devon-Lane',                         destination: '/products/shilajit-8-in-1-capsules', permanent: true },
-      { source: '/team-single/:slug',                              destination: '/products',                          permanent: true },
-      { source: '/product-single/:slug',                           destination: '/products',                          permanent: true },
-      { source: '/cart',                                           destination: '/products',                          permanent: true },
-      { source: '/checkout',                                       destination: '/products',                          permanent: true },
-      { source: '/order-received',                                 destination: '/products',                          permanent: true },
+      // Old blog-single → new /blog/:slug canonical path
+      { source: '/blog-single/:slug',                      destination: '/blog/:slug',   permanent: true },
+
+      // E-commerce / team pages → /products routes
+      { source: '/team',                                   destination: '/products',                          permanent: true },
+      { source: '/shop',                                   destination: '/products',                          permanent: true },
+      { source: '/team-single/Esther-Howard',              destination: '/products/shilajit-resin',           permanent: true },
+      { source: '/team-single/Guy-Hawkins',                destination: '/products/shilajit-capsules',        permanent: true },
+      { source: '/team-single/Robert-Fox',                 destination: '/products/shilajit-gummies',         permanent: true },
+      { source: '/team-single/Devon-Lane',                 destination: '/products/shilajit-8-in-1-capsules', permanent: true },
+      { source: '/team-single/:slug',                      destination: '/products',                          permanent: true },
+      { source: '/product-single/:slug',                   destination: '/products',                          permanent: true },
+      { source: '/cart',                                   destination: '/products',                          permanent: true },
+      { source: '/checkout',                               destination: '/products',                          permanent: true },
+      { source: '/order-received',                         destination: '/products',                          permanent: true },
+
+      // Service → Benefits redirects
+      { source: '/service',                                                    destination: '/benefits',                            permanent: true },
+      { source: '/service-single/boosts-energy-and-vitality',                 destination: '/benefits/boosts-energy-and-vitality',                permanent: true },
+      { source: '/service-single/enhances-mental-clarity',                    destination: '/benefits/enhances-mental-clarity',                   permanent: true },
+      { source: '/service-single/strengthens-immunity',                       destination: '/benefits/strengthens-immunity',                      permanent: true },
+      { source: '/service-single/improves-physical-performance',              destination: '/benefits/improves-physical-performance',             permanent: true },
+      { source: '/service-single/promotes-hormonal-balance',                  destination: '/benefits/promotes-hormonal-balance',                 permanent: true },
+      // Catch-all for old service-single template slugs (contact, sidebar, etc.)
+      { source: '/service-single/:slug',                                       destination: '/benefits',                            permanent: true },
     ];
   },
 };
