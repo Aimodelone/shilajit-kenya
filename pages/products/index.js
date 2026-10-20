@@ -24,7 +24,9 @@ export default function ProductsPage({ products, settings }) {
 
       <section className="wpo-team-section section-padding">
         <div className="container">
-          <div className="wpo-team-wrap">
+          <div className="wpo-section-title">
+            <h1 style={{ fontSize: '2rem', marginBottom: '8px' }}>Shop Shilajit Products in Kenya</h1>
+          </div>
             <div className="row">
               {products.map((product) => (
                 <div className="col col-lg-3 col-md-6 col-12" key={product._id}>
@@ -59,7 +61,6 @@ export default function ProductsPage({ products, settings }) {
                 </div>
               ))}
             </div>
-          </div>
         </div>
       </section>
 
