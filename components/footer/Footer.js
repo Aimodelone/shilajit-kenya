@@ -1,8 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import Logo from '/public/images/logo.png'
-import Services from '../../api/service';
 import Image from 'next/image';
+
 
 const ClickHandler = () => {
     window.scrollTo(10, 0);
@@ -59,7 +59,8 @@ const Footer = (props) => {
                                 </div>
                                 <ul>
                                     <li><Link onClick={ClickHandler} href="/service">Shilajit Benefits</Link></li>
-                                    <li><Link onClick={ClickHandler} href="/team">Products</Link></li>
+                                    <li><Link onClick={ClickHandler} href="/products">Products</Link></li>
+                                    <li><Link onClick={ClickHandler} href="/faq">FAQ</Link></li>
                                 </ul>
                             </div>
                         </div>

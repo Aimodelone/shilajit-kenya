@@ -19,8 +19,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <div>
       <Head>
-        <title>Kenya Shilajit - Natural Energy & Health Supplement</title>
-        <meta name="description" content="Boost your energy and health naturally with Kenya Shilajit – a powerful mineral resin packed with fulvic acid and minerals." />
+        {/* Viewport only — each page sets its own title/description via <Seo /> */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 

@@ -9,9 +9,7 @@ const menus = [
         id: 1,
         title: 'Home',
         link: '/',
-
     },
-
     {
         id: 2,
         title: 'About',
@@ -19,34 +17,24 @@ const menus = [
     },
     {
         id: 3,
-        title: 'Pages',
-        link: '/',
-        submenu: [
-            {
-                id: 385,
-                title: 'Products',
-                link: '/team',
-            },
-            {
-                id: 33,
-                title: 'FAQ',
-                link: '/faq'
-            },
-        ]
+        title: 'Products',
+        link: '/products',
     },
-
     {
         id: 5,
         title: 'Blog',
         link: '/blog',
     },
     {
+        id: 6,
+        title: 'FAQ',
+        link: '/faq',
+    },
+    {
         id: 88,
         title: 'Contact',
         link: '/contact',
-    }
-
-
+    },
 ]
 
 
