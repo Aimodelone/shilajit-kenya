@@ -4,7 +4,7 @@
     "dev": "next dev -p 3100",
     "build": "next build",
     "start": "next start",
-    "test:api": "node --env-file=.env.local tests/admin-products.test.js && node --env-file=.env.local tests/admin-benefits.test.js && node --env-file=.env.local tests/admin-blog.test.js && node --env-file=.env.local tests/admin-testimonials.test.js && node --env-file=.env.local tests/admin-faqs.test.js && node --env-file=.env.local tests/admin-settings.test.js && node --env-file=.env.local tests/admin-upload.test.js"
+    "test:api": "node --env-file=.env.local tests/admin-products.test.js && node --env-file=.env.local tests/admin-benefits.test.js && node --env-file=.env.local tests/admin-blog.test.js && node --env-file=.env.local tests/admin-testimonials.test.js && node --env-file=.env.local tests/admin-faqs.test.js && node --env-file=.env.local tests/admin-settings.test.js && node --env-file=.env.local tests/admin-upload.test.js && node --env-file=.env.local tests/inquiries.test.js"
   },
 
 
