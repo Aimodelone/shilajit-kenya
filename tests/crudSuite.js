@@ -1,23 +1,30 @@
 /**
  * tests/crudSuite.js — CommonJS
- * Shared CRUD test suite factory.
+ * Shared parameterised CRUD test suite factory.
  * Called from resource-specific test files; never run directly.
  * Never prints tokens or secrets.
  *
  * opts shape:
- *   label          string   – e.g. 'benefit' (used in check labels + auto-slug title)
- *   basePath       string   – e.g. '/api/admin/benefits'
- *   slugPrefix     string   – e.g. 'zztest-benefit-'  (for cleanup)
- *   buildBody      fn(suffix) => object  – returns a valid create body
- *   requiredField  string   – field to omit for the 400 test
- *   imageField     string   – 'image' or 'coverImage'
- *   base           string   – e.g. 'http://localhost:3000'
- *   cookie         string   – auth cookie header value
+ *   label          string         – e.g. 'benefit'
+ *   basePath       string         – e.g. '/api/admin/benefits'
+ *   slugPrefix     string         – prefix for secondSlug; may be '' when hasSlug=false
+ *   buildBody      fn(suffix)=>obj – returns a valid create body
+ *   requiredField  string         – field to omit for the 400 test
+ *   imageField     string|null    – 'image'/'coverImage'/etc; null → skip image URL checks
+ *   primaryField   string         – field checked "unchanged after PUT" (default 'title')
+ *   hasSlug        boolean        – false → skip all 4 slug-related checks (print SKIP lines)
+ *   base           string         – base URL (default BASE_URL from helpers)
+ *   cookie         string         – auth cookie header value
  */
 
 'use strict';
 
 const { check, BASE_URL } = require('./helpers');
+
+// ── Skip helper (does NOT count as pass or fail) ──────────────────────────────
+function skip(label) {
+  console.log(`  SKIP  ${label}`);
+}
 
 // ── HTTP helper ────────────────────────────────────────────────────────────────
 async function apiReq(base, method, path, opts = {}) {
@@ -41,19 +48,22 @@ async function runCrudSuite(opts) {
   const {
     label,
     basePath,
-    slugPrefix,
+    slugPrefix  = '',
     buildBody,
     requiredField,
-    imageField,
-    base = BASE_URL,
+    imageField,             // null/falsy → skip image URL checks (3 SKIP lines)
+    primaryField = 'title', // field verified "unchanged" in PUT test
+    hasSlug      = true,    // false → skip 4 slug checks (1+1+3+1 SKIP lines)
+    base         = BASE_URL,
     cookie,
   } = opts;
 
-  const FAKE_ID   = '507f1f77bcf86cd799439011'; // valid ObjectId that doesn't exist
-  const req = (method, path, ropts = {}) => apiReq(base, method, path, { ...ropts, cookie: ropts.cookie ?? cookie });
-
-  let firstId   = '';
+  const FAKE_ID    = '507f1f77bcf86cd799439011';
   const secondSlug = `${slugPrefix}002`;
+  const req = (method, path, ropts = {}) =>
+    apiReq(base, method, path, { ...ropts, cookie: ropts.cookie ?? cookie });
+
+  let firstId = '';
 
   console.log(`\n=== Shared CRUD checks: ${label} ===`);
 
@@ -80,19 +90,23 @@ async function runCrudSuite(opts) {
     firstId = res.json?._id || '';
   }
 
-  // ── c) Duplicate slug → 409 ───────────────────────────────────────────────
+  // ── c) Duplicate slug → 409  (SKIP when hasSlug=false) ───────────────────
   console.log('\n-- c) Duplicate slug → 409 --');
-  {
+  if (hasSlug) {
     const res = await req('POST', basePath, { body: buildBody('001') });
     check('Duplicate slug → 409', res.status === 409, `Got ${res.status}`);
+  } else {
+    skip('Duplicate slug → 409');
   }
 
-  // ── d) Bad slug → 400 ────────────────────────────────────────────────────
+  // ── d) Bad slug → 400  (SKIP when hasSlug=false) ─────────────────────────
   console.log('\n-- d) Bad slug → 400 --');
-  {
+  if (hasSlug) {
     const body = { ...buildBody('bad-slug'), slug: 'Bad Slug' };
     const res = await req('POST', basePath, { body });
     check('"Bad Slug" → 400', res.status === 400, `Got ${res.status}`);
+  } else {
+    skip('"Bad Slug" → 400');
   }
 
   // ── e) Missing required field → 400 ──────────────────────────────────────
@@ -104,9 +118,9 @@ async function runCrudSuite(opts) {
     check(`Missing ${requiredField} → 400`, res.status === 400, `Got ${res.status}`);
   }
 
-  // ── f) Image URL allow-list ───────────────────────────────────────────────
+  // ── f) Image URL allow-list  (SKIP when imageField is falsy) ─────────────
   console.log('\n-- f) Image URL allow-list --');
-  {
+  if (imageField) {
     const res1 = await req('POST', basePath, {
       body: { ...buildBody('img-js'), [imageField]: { url: 'javascript:alert(1)' } },
     });
@@ -121,6 +135,10 @@ async function runCrudSuite(opts) {
       body: { ...buildBody('img-local'), [imageField]: { url: '/images/product/1.jpg' } },
     });
     check('"/images/product/1.jpg" → 201', res3.status === 201, `Got ${res3.status}`);
+  } else {
+    skip('"javascript:alert(1)" → 400');
+    skip('"http://evil.example/x.jpg" → 400');
+    skip('"/images/product/1.jpg" → 201');
   }
 
   // ── g) Extra fields stripped ──────────────────────────────────────────────
@@ -134,17 +152,21 @@ async function runCrudSuite(opts) {
     check('No "hacker" field in response', !('hacker' in (res.json || {})));
   }
 
-  // ── h) Auto-slug from title ───────────────────────────────────────────────
+  // ── h) Auto-slug from title  (SKIP when hasSlug=false) ───────────────────
   console.log('\n-- h) Auto-slug from title --');
-  {
+  if (hasSlug) {
     const body = { ...buildBody('autoslug') };
     delete body.slug;
-    body.title = `ZZTest ${label} Auto Slug!`; // slugifies to zztest-<label>-auto-slug
+    body.title = `ZZTest ${label} Auto Slug!`;
     const res = await req('POST', basePath, { body });
     check(`No-slug → 201`, res.status === 201, `Got ${res.status}: ${JSON.stringify(res.json)}`);
     const slug = res.json?.slug || '';
     check(`Generated slug matches /^[a-z0-9]+(?:-[a-z0-9]+)*$/`, /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug), `Got "${slug}"`);
     check(`Generated slug contains "zztest"`, slug.includes('zztest'), `Got "${slug}"`);
+  } else {
+    skip('No-slug → 201');
+    skip('Generated slug matches /^[a-z0-9]+(?:-[a-z0-9]+)*$/');
+    skip('Generated slug contains "zztest"');
   }
 
   // ── i) List shape and limits ──────────────────────────────────────────────
@@ -193,25 +215,28 @@ async function runCrudSuite(opts) {
   // ── l) PUT ────────────────────────────────────────────────────────────────
   console.log('\n-- l) PUT --');
   {
-    // Get original title for "other fields unchanged" check
     const getRes = await req('GET', `${basePath}/${firstId}`);
-    const originalTitle = getRes.json?.title;
+    const originalValue = getRes.json?.[primaryField];
 
     const res1 = await req('PUT', `${basePath}/${firstId}`, { body: { published: false } });
     check(`PUT { published:false } → 200`, res1.status === 200, `Got ${res1.status}`);
     check(`published updated to false`, res1.json?.published === false, `Got ${res1.json?.published}`);
-    check(`title unchanged after PUT`, res1.json?.title === originalTitle, `Got "${res1.json?.title}"`);
+    check(`${primaryField} unchanged after PUT`, res1.json?.[primaryField] === originalValue, `Got "${res1.json?.[primaryField]}"`);
 
     const res2 = await req('PUT', `${basePath}/${firstId}`, { body: {} });
     check(`PUT {} → 400`, res2.status === 400, `Got ${res2.status}`);
 
-    // Create a second doc to test duplicate-slug rejection via PUT
-    const create2 = await req('POST', basePath, { body: buildBody('002') });
-    if (create2.status === 201) {
-      const res3 = await req('PUT', `${basePath}/${firstId}`, { body: { slug: secondSlug } });
-      check(`PUT duplicate slug → 409`, res3.status === 409, `Got ${res3.status}`);
+    // Slug conflict via PUT  (SKIP when hasSlug=false)
+    if (hasSlug) {
+      const create2 = await req('POST', basePath, { body: buildBody('002') });
+      if (create2.status === 201) {
+        const res3 = await req('PUT', `${basePath}/${firstId}`, { body: { slug: secondSlug } });
+        check(`PUT duplicate slug → 409`, res3.status === 409, `Got ${res3.status}`);
+      } else {
+        check(`PUT duplicate slug → 409`, false, `Could not create second doc: ${create2.status}`);
+      }
     } else {
-      check(`PUT duplicate slug → 409`, false, `Could not create second doc: ${create2.status}`);
+      skip('PUT duplicate slug → 409');
     }
   }
 
