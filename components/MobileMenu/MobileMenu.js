@@ -23,11 +23,6 @@ const menus = [
         link: '/',
         submenu: [
             {
-                id: 31,
-                title: 'Gallery',
-                link: '/gallery'
-            },
-            {
                 id: 385,
                 title: 'Products',
                 link: '/team',

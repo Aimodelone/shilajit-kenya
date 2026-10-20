@@ -34,6 +34,9 @@ const nextConfig = {
       { source: '/register',        destination: '/', permanent: true },
       { source: '/forgot-password', destination: '/', permanent: true },
 
+      // Deleted gallery page → homepage
+      { source: '/gallery', destination: '/', permanent: true },
+
       // Deleted blog layout variants → canonical blog routes
       { source: '/blog-fullwidth',                   destination: '/blog',             permanent: true },
       { source: '/blog-left-sidebar',                destination: '/blog',             permanent: true },
