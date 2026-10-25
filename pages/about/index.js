@@ -27,20 +27,7 @@ export default function AboutPage({ settings }) {
         settings={settings}
       />
       <Navbar2 />
-      <PageTitle pageTitle="About Us" pagesub="About" />
-
-      {/* Visually hidden h1 so the page has exactly one h1 while About section keeps its h2 */}
-      <h1 style={{
-        position: 'absolute',
-        width: '1px',
-        height: '1px',
-        padding: 0,
-        margin: '-1px',
-        overflow: 'hidden',
-        clip: 'rect(0,0,0,0)',
-        whiteSpace: 'nowrap',
-        border: 0,
-      }}>About Shilajit Kenya</h1>
+      <PageTitle pageTitle="About Us" pagesub="About" as="h1" />
 
       <About abimg={abimg} abClass="pt-padding" />
       <CampaignSection />

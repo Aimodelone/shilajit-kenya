@@ -10,9 +10,14 @@ import { ToastContainer } from 'react-toastify';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Head from "next/head";
+import { useRouter } from 'next/router';
 import WhatsAppWidget from "../components/WhatsAppWidget/WhatsAppWidget"; // WhatsApp chat widget
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+  // Admin pages handle their own chrome; skip public widgets there
+  const isAdmin = router.pathname.startsWith('/admin');
+
   return (
     <div>
       <Head>
@@ -22,7 +27,7 @@ function MyApp({ Component, pageProps }) {
 
       <Component {...pageProps} />
       <ToastContainer />
-      <WhatsAppWidget /> {/* Global floating WhatsApp chat */}
+      {!isAdmin && <WhatsAppWidget />} {/* Global floating WhatsApp chat — hidden for admin */}
     </div>
   );
 }

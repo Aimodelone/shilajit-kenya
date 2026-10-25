@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import MobileMenu from '../MobileMenu/MobileMenu'
-
+import useSiteSettings from '../../lib/useSiteSettings.js'
+import { whatsappLink } from '../../lib/site.js'
 
 const Header = (props) => {
-    const [menuActive, setMenuState] = useState(false);
-    const SubmitHandler = (e) => {
-        e.preventDefault()
-    }
+    const settings = useSiteSettings();
+
+    // Buy Now link from settings; hardcoded URL is the fallback defined inside useSiteSettings
+    const buyNowHref = whatsappLink(settings);
 
     const ClickHandler = () => {
         window.scrollTo(10, 0);
@@ -53,7 +54,7 @@ const Header = (props) => {
                                 <div className="header-right">
                                     <div className="close-form">
                                         <a
-                                           href="https://wa.me/254793313743?text=Welcome!%0A%0AWe%E2%80%99re%20now%20selling%20pure%20Himalayan%20Shilajit%20%E2%80%93%20known%20for%20boosting%20energy%20and%20vitality%20%E2%80%93%20for%20just%203500.%0A100%25%20natural%2C%20straight%20from%20the%20Himalayas%20mountains!%0A%0AWould%20you%20like%20to%20place%20an%20order%3F"
+                                           href={buyNowHref}
                                             className="theme-btn"
                                             style={{ color: "#000" }}
                                             target="_blank"

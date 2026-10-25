@@ -4,12 +4,11 @@ import HeaderTopbar from '../HeaderTopbar/HeaderTopbar'
 import MobileMenu from '../MobileMenu/MobileMenu'
 import Logo from '/public/images/logo2.png'
 import Image from 'next/image'
+import useSiteSettings from '../../lib/useSiteSettings.js'
 
 const Header2 = (props) => {
     const [menuActive, setMenuState] = useState(false);
-    const SubmitHandler = (e) => {
-        e.preventDefault()
-    }
+    const settings = useSiteSettings();
 
     const ClickHandler = () => {
         window.scrollTo(10, 0);
@@ -56,8 +55,20 @@ const Header2 = (props) => {
                                 <div className="header-right">
                                     <div className="social">
                                         <ul>
-                                            <li><Link href="https://facebook.com/shilajitkenya"><i className="fi flaticon-facebook-app-symbol"></i></Link></li>
-                                            <li><Link href="https://instagram.com/shilajitkenya"><i className="fi flaticon-instagram-1"></i></Link></li>
+                                            {settings.socialLinks?.facebook && (
+                                            <li>
+                                                <Link href={settings.socialLinks.facebook}>
+                                                    <i className="fi flaticon-facebook-app-symbol"></i>
+                                                </Link>
+                                            </li>
+                                            )}
+                                            {settings.socialLinks?.instagram && (
+                                            <li>
+                                                <Link href={settings.socialLinks.instagram}>
+                                                    <i className="fi flaticon-instagram-1"></i>
+                                                </Link>
+                                            </li>
+                                            )}
                                         </ul>
                                     </div>
                                 </div>

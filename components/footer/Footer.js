@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Logo from '/public/images/logo.png'
 import Image from 'next/image';
+import useSiteSettings from '../../lib/useSiteSettings.js';
 
 
 const ClickHandler = () => {
@@ -12,6 +13,7 @@ const SubmitHandler = (e) => {
 }
 
 const Footer = (props) => {
+    const settings = useSiteSettings();
     return (
         <footer className="wpo-site-footer">
             <div className="wpo-upper-footer">
@@ -23,20 +25,24 @@ const Footer = (props) => {
                                     <Link onClick={ClickHandler} className="navbar-brand" href="/index"><Image src={Logo} alt="" /></Link>
                                 </div>
                                 <ul className="info">
-                                    <li>Phone: +254 793 313743</li>
+                                    {settings.phone && <li>Phone: {settings.phone}</li>}
                                 </ul>
                                 <div className="social">
                                     <ul>
+                                        {settings.socialLinks?.facebook && (
                                         <li>
-                                            <Link onClick={ClickHandler} href="https://facebook.com/shilajitkenya">
+                                            <Link onClick={ClickHandler} href={settings.socialLinks.facebook}>
                                                 <i className="fi flaticon-facebook-app-symbol"></i>
                                             </Link>
                                         </li>
+                                        )}
+                                        {settings.socialLinks?.instagram && (
                                         <li>
-                                            <Link onClick={ClickHandler} href="https://instagram.com/shilajitkenya">
+                                            <Link onClick={ClickHandler} href={settings.socialLinks.instagram}>
                                                 <i className="fi flaticon-instagram-1"></i>
                                             </Link>
                                         </li>
+                                        )}
                                     </ul>
                                 </div>
                             </div>
