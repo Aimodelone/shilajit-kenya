@@ -12,7 +12,7 @@ import Scrollbar from '../components/scrollbar/scrollbar';
 import Seo from '../components/Seo/Seo';
 import abimg from '/public/images/about.jpg';
 import hero1 from '/public/images/slider/1.png';
-import { getSettings, getProducts, getTestimonials, getFaqs, getLatestPosts } from '../lib/data';
+// server-only data helpers required inline inside getStaticProps (see below)
 import { whatsappLink, absoluteUrl } from '../lib/site';
 import Slider from 'react-slick';
 
@@ -295,6 +295,8 @@ export default function HomePage({ settings, products, testimonials, posts }) {
 
 export async function getStaticProps() {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { getSettings, getProducts, getTestimonials, getLatestPosts } = require('../lib/data');
     const [settings, products, testimonials, posts] = await Promise.all([
       getSettings(),
       getProducts({ featuredOnly: true }),

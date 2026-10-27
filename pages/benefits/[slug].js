@@ -11,7 +11,7 @@ import PageTitle from '../../components/pagetitle/PageTitle';
 import Footer from '../../components/footer/Footer';
 import Scrollbar from '../../components/scrollbar/scrollbar';
 import Seo from '../../components/Seo/Seo';
-import { getBenefitBySlug, getAllBenefitSlugs, getBenefits, getSettings } from '../../lib/data';
+// server-only data helpers required inline inside getStaticPaths/getStaticProps (see below)
 import { absoluteUrl } from '../../lib/site';
 import { marked } from 'marked';
 import sanitizeHtml from 'sanitize-html';
@@ -155,6 +155,8 @@ export default function BenefitDetailPage({ benefit, relatedBenefits, settings }
 
 export async function getStaticPaths() {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { getAllBenefitSlugs } = require('../../lib/data');
     const slugs = await getAllBenefitSlugs();
     return { paths: slugs.map((slug) => ({ params: { slug } })), fallback: 'blocking' };
   } catch {
@@ -164,6 +166,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { getBenefitBySlug, getBenefits, getSettings } = require('../../lib/data');
     const [benefit, allBenefits, settings] = await Promise.all([
       getBenefitBySlug(params.slug),
       getBenefits(),

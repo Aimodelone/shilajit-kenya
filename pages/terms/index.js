@@ -13,7 +13,7 @@ import Image from 'next/image';
 import fagImg1 from '/public/images/terms/terms2.jpg';
 import fagImg2 from '/public/images/terms/1.jpg';
 import fagImg3 from '/public/images/terms/2.jpg';
-import { getSettings } from '../../lib/data';
+// server-only data helpers required inline inside getStaticProps (see below)
 
 export default function TermsPage({ settings }) {
   return (
@@ -103,6 +103,8 @@ export default function TermsPage({ settings }) {
 
 export async function getStaticProps() {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { getSettings } = require('../../lib/data');
     const settings = await getSettings();
     return { props: { settings }, revalidate: 60 };
   } catch {

@@ -9,7 +9,7 @@ import PageTitle from '../../components/pagetitle/PageTitle';
 import Footer from '../../components/footer/Footer';
 import Scrollbar from '../../components/scrollbar/scrollbar';
 import Seo from '../../components/Seo/Seo';
-import { getBenefits, getSettings } from '../../lib/data';
+// server-only data helpers required inline inside getStaticProps (see below)
 
 const ICONS = [
   'flaticon-volunteer',
@@ -68,6 +68,8 @@ export default function BenefitsPage({ benefits, settings }) {
 
 export async function getStaticProps() {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { getBenefits, getSettings } = require('../../lib/data');
     const [benefits, settings] = await Promise.all([getBenefits(), getSettings()]);
     return { props: { benefits, settings }, revalidate: 60 };
   } catch {

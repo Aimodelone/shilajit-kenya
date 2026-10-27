@@ -16,7 +16,7 @@ import Footer from '../../components/footer/Footer';
 import BlogSidebar from '../../components/BlogSidebar/BlogSidebar';
 import Scrollbar from '../../components/scrollbar/scrollbar';
 import Seo from '../../components/Seo/Seo';
-import { getBlogPostBySlug, getAllBlogSlugs, getSettings, getLatestPosts } from '../../lib/data';
+// server-only data helpers required inline inside getStaticPaths/getStaticProps (see below)
 import { absoluteUrl } from '../../lib/site';
 
 /** Allowed HTML config for sanitize-html. */
@@ -203,6 +203,8 @@ export default function BlogPostPage({ post, settings, recentPosts }) {
 
 export async function getStaticPaths() {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { getAllBlogSlugs } = require('../../lib/data');
     const slugs = await getAllBlogSlugs();
     return {
       paths: slugs.map((slug) => ({ params: { slug } })),
@@ -215,6 +217,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { getBlogPostBySlug, getSettings, getLatestPosts } = require('../../lib/data');
     const [post, settings, recentPosts] = await Promise.all([
       getBlogPostBySlug(params.slug),
       getSettings(),

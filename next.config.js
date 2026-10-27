@@ -1,27 +1,7 @@
 /** @type {import('next').NextConfig} */
-const path = require('path');
 const nextConfig = {
   reactStrictMode: true,
 
-  // In client (browser) builds, alias the entire `mongoose` package to an
-  // empty stub.  This prevents webpack from trying to parse MongoDB's Node-only
-  // source (net, tls, timers/promises, async_hooks, etc.) — none of which
-  // exist in a browser environment.
-  //
-  // Why this is safe: all mongoose usage lives inside getStaticProps / API
-  // routes, which run exclusively server-side.  Next.js strips getStaticProps
-  // from client bundles at the function level, but it still sees the top-level
-  // `import` statements that reach into mongoose.  The stub gives webpack
-  // something to bundle without pulling in Node built-ins.
-  webpack(config, { isServer }) {
-    if (!isServer) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        mongoose: path.resolve(__dirname, 'lib/__mongoose_browser_stub.js'),
-      };
-    }
-    return config;
-  },
   poweredByHeader: false,
 
   images: {

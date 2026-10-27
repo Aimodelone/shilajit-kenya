@@ -6,7 +6,7 @@ import Footer from '../../components/footer/Footer';
 import Scrollbar from '../../components/scrollbar/scrollbar';
 import PageTitle from '../../components/pagetitle/PageTitle';
 import Seo from '../../components/Seo/Seo';
-import { getProducts, getSettings } from '../../lib/data';
+// server-only data helpers required inline inside getStaticProps (see below)
 
 const ClickHandler = () => { window.scrollTo(0, 0); };
 
@@ -72,6 +72,8 @@ export default function ProductsPage({ products, settings }) {
 
 export async function getStaticProps() {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { getProducts, getSettings } = require('../../lib/data');
     const [products, settings] = await Promise.all([
       getProducts({ featuredOnly: false }),
       getSettings(),

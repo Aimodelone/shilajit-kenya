@@ -10,7 +10,7 @@ import PageTitle from '../../components/pagetitle/PageTitle';
 import Footer from '../../components/footer/Footer';
 import Scrollbar from '../../components/scrollbar/scrollbar';
 import Seo from '../../components/Seo/Seo';
-import { getTestimonials, getSettings } from '../../lib/data';
+// server-only data helpers required inline inside getStaticProps (see below)
 
 export default function TestimonialPage({ testimonials, settings }) {
   return (
@@ -86,6 +86,8 @@ export default function TestimonialPage({ testimonials, settings }) {
 
 export async function getStaticProps() {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { getTestimonials, getSettings } = require('../../lib/data');
     const [testimonials, settings] = await Promise.all([getTestimonials(), getSettings()]);
     return { props: { testimonials, settings }, revalidate: 60 };
   } catch {

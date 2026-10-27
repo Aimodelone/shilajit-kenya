@@ -3,11 +3,8 @@
  * Generates /sitemap.xml with absolute URLs, ISR-friendly Cache-Control headers,
  * and lastmod dates from updatedAt on dynamic content.
  */
-import { connectToDatabase } from '../lib/mongodb';
-import Product  from '../models/Product';
-import Benefit  from '../models/Benefit';
-import BlogPost from '../models/BlogPost';
 import { SITE_URL } from '../lib/site';
+// server-only: connectToDatabase and models required inline inside getServerSideProps
 
 /** XML-escape a string for use inside a URL element. */
 function esc(str) {
@@ -44,6 +41,14 @@ export default function Sitemap() { return null; }
 export async function getServerSideProps({ res }) {
   let products = [], benefits = [], posts = [];
   try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { connectToDatabase } = require('../lib/mongodb');
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const Product  = require('../models/Product');
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const Benefit  = require('../models/Benefit');
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const BlogPost = require('../models/BlogPost');
     await connectToDatabase();
     [products, benefits, posts] = await Promise.all([
       Product.find({ published: true }).select('slug updatedAt').lean(),

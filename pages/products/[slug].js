@@ -6,7 +6,7 @@ import Footer from '../../components/footer/Footer';
 import Scrollbar from '../../components/scrollbar/scrollbar';
 import PageTitle from '../../components/pagetitle/PageTitle';
 import Seo from '../../components/Seo/Seo';
-import { getProducts, getProductBySlug, getRelatedProducts, getSettings } from '../../lib/data';
+// server-only data helpers required inline inside getStaticPaths/getStaticProps (see below)
 import { whatsappLink, absoluteUrl } from '../../lib/site';
 
 const ClickHandler = () => { window.scrollTo(0, 0); };
@@ -263,6 +263,8 @@ export default function ProductPage({ product, related, settings }) {
 
 export async function getStaticPaths() {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { getProducts } = require('../../lib/data');
     const products = await getProducts({ featuredOnly: false });
     const paths = products.map(p => ({ params: { slug: p.slug } }));
     return { paths, fallback: 'blocking' };
@@ -273,6 +275,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { getProductBySlug, getRelatedProducts, getSettings } = require('../../lib/data');
     const [product, settings] = await Promise.all([
       getProductBySlug(params.slug),
       getSettings(),
