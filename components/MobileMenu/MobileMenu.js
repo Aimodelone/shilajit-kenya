@@ -21,6 +21,11 @@ const menus = [
         link: '/products',
     },
     {
+        id: 4,
+        title: 'Benefits',
+        link: '/benefits',
+    },
+    {
         id: 5,
         title: 'Blog',
         link: '/blog',

@@ -8,6 +8,7 @@ const BenefitSchema = new mongoose.Schema(
     shortDescription: { type: String, required: true, maxlength: 300 },
     content:          { type: String }, // long text — plain text or Markdown
     image:            { type: imageSchema },
+    category:         { type: String, trim: true, maxlength: 40 },
     published:        { type: Boolean, default: true },
     order:            { type: Number, default: 0 },
     seoTitle:         { type: String, maxlength: 70 },

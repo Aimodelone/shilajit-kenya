@@ -49,7 +49,7 @@ export default async function handler(req, res) {
       if (slug) paths.push(`/products/${slug}`);
       break;
     case 'benefit':
-      paths = ['/benefits'];
+      paths = ['/benefits', '/about'];
       if (slug) paths.push(`/benefits/${slug}`);
       break;
     case 'blog':

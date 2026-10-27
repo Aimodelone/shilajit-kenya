@@ -6,7 +6,7 @@ import React, { Fragment } from 'react';
 import Navbar2 from '../../components/Navbar2/Navbar2';
 import PageTitle from '../../components/pagetitle/PageTitle';
 import About from '../../components/about/about';
-import CampaignSection from '../../components/CampaignSection/CampaignSection';
+
 import Testimonial from '../../components/Testimonial/Testimonial';
 import FunFact from '../../components/FunFact/FunFact';
 import Donors from '../../components/Donors/Donors';
@@ -14,10 +14,10 @@ import PartnerSection from '../../components/PartnerSection/PartnerSection';
 import Footer from '../../components/footer/Footer';
 import Scrollbar from '../../components/scrollbar/scrollbar';
 import Seo from '../../components/Seo/Seo';
-// server-only data helpers required inline inside getStaticProps (see below)
+import BenefitsSection from '../../components/BenefitsSection/BenefitsSection';
 import abimg from '/public/images/about.jpg';
 
-export default function AboutPage({ settings }) {
+export default function AboutPage({ settings, benefits = [] }) {
   return (
     <Fragment>
       <Seo
@@ -30,7 +30,12 @@ export default function AboutPage({ settings }) {
       <PageTitle pageTitle="About Us" pagesub="About" as="h1" />
 
       <About abimg={abimg} abClass="pt-padding" />
-      <CampaignSection />
+      <BenefitsSection
+        benefits={benefits}
+        label="Benefits"
+        heading="Benefits of Shilajit"
+        showViewAll
+      />
       <Testimonial />
       <FunFact />
       <Donors />
@@ -44,10 +49,13 @@ export default function AboutPage({ settings }) {
 export async function getStaticProps() {
   try {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const { getSettings } = require('../../lib/data');
-    const settings = await getSettings();
-    return { props: { settings }, revalidate: 60 };
+    const { getSettings, getBenefits } = require('../../lib/data');
+    const [settings, benefits] = await Promise.all([
+      getSettings(),
+      getBenefits({ limit: 3 }),
+    ]);
+    return { props: { settings, benefits }, revalidate: 60 };
   } catch {
-    return { props: { settings: {} }, revalidate: 60 };
+    return { props: { settings: {}, benefits: [] }, revalidate: 60 };
   }
 }

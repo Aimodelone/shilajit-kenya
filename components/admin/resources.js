@@ -67,10 +67,12 @@ export const BENEFITS = {
   cardImage: (item) => item.image || null,
   cardBadges: (item) => [
     { label: item.published ? 'Published' : 'Draft', style: item.published ? 'pillGreen' : 'pillGray' },
+    item.category && { label: item.category, style: 'pillBlue' },
   ].filter(Boolean),
   fields: [
     { key: 'title',            label: 'Title',           type: 'text',     required: true },
     { key: 'slug',             label: 'Slug',            type: 'text',     slugField: true },
+    { key: 'category',         label: 'Card label (shown in yellow above the title, e.g. Energy, Immunity)', type: 'text', maxLength: 40 },
     { key: 'shortDescription', label: 'Short description', type: 'textarea', maxLength: 300 },
     { key: 'content',          label: 'Content',         type: 'textarea', hint: 'Supports Markdown' },
     { key: 'image',            label: 'Image',           type: 'image',    section: 'benefits' },

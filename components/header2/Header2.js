@@ -43,6 +43,9 @@ const Header2 = (props) => {
                                         <li>
                                             <Link onClick={ClickHandler} href="/products">Products</Link>
                                         </li>
+                                        <li>
+                                            <Link onClick={ClickHandler} href="/benefits">Benefits</Link>
+                                        </li>
                                         <li className="menu-item-has-children">
                                             <Link onClick={ClickHandler} href="/blog">Blog</Link>
                                         </li>
