@@ -14,7 +14,7 @@
  *   4. Rate limit      → 429
  *   5. Body shape      → 400
  *   6. Honeypot        → 200 (silent)
- *   7. Time check      → 200 (silent)
+ *   7. Time check      → 200 (silent, logged)
  *   8. Validation      → 400
  *   9. DB save         → 201
  */
@@ -75,21 +75,20 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Invalid request' });
     }
 
-    // 6. Honeypot — non-empty `website` field silently returns success.
+    // 6. Honeypot — non-empty `extra_note` (current) or `website` (legacy) silently returns success.
     //    Checked before validation so error messages cannot reveal the honeypot's existence.
-    const website = typeof body.website === 'string' ? body.website.trim() : '';
-    if (website !== '') {
+    const hp = (v) => (typeof v === 'string' ? v.trim() : '');
+    if (hp(body.extra_note) !== '' || hp(body.website) !== '') {
+      console.warn('[inquiries] dropped: honeypot');
       return res.status(200).json({ success: true });
     }
 
-    // 7. Time check — bot detection via form fill speed.
-    if (typeof body.formStartedAt === 'number') {
-      const now     = Date.now();
-      const elapsed = now - body.formStartedAt;
-      // Reject if submitted in under 3 s, or if timestamp is > 5 s in the future.
-      if (elapsed < 3000 || body.formStartedAt > now + 5000) {
-        return res.status(200).json({ success: true });
-      }
+    // 7. Time check — clock-independent: the client measures elapsedMs with
+    //    performance.now(). Only a numeric elapsedMs below 3000 is treated as a bot.
+    //    formStartedAt is accepted but ignored.
+    if (typeof body.elapsedMs === 'number' && body.elapsedMs < 3000) {
+      console.warn('[inquiries] dropped: too fast');
+      return res.status(200).json({ success: true });
     }
 
     // 8. Validate.
@@ -106,7 +105,7 @@ export default async function handler(req, res) {
 
     // Strip honeypot and time-check fields before saving.
     // eslint-disable-next-line no-unused-vars
-    const { website: _w, formStartedAt: _f, ...toSave } = parsed.data;
+    const { website: _w, extra_note: _x, formStartedAt: _f, elapsedMs: _e, ...toSave } = parsed.data;
 
     // 9. Save — always force read: false; never echo back the document.
     await connectToDatabase();

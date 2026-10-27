@@ -2,7 +2,7 @@
  * pages/contact/index.js
  * Contact page with:
  * - Contact info from site settings (hides empty fields)
- * - Form wired to POST /api/inquiries (honeypot, formStartedAt, validation)
+ * - Form wired to POST /api/inquiries (honeypot extra_note, elapsedMs, validation)
  * - LocalBusiness JSON-LD from settings
  * - One h1, Seo component
  */
@@ -32,12 +32,14 @@ export default function ContactPage({ settings }) {
   };
 
   /* ── Form state ─────────────────────────────────────────────────────────── */
-  const [form, setForm]       = useState({ name: '', phone: '', email: '', subject: '', message: '', website: '' });
+  const EMPTY = { name: '', phone: '', email: '', subject: '', message: '', extra_note: '' };
+  const [form, setForm]       = useState(EMPTY);
   const [sending, setSending] = useState(false);
   const [result,  setResult]  = useState(null); // { ok: bool, msg: string }
-  const startedAt             = useRef(null);
+  const startedPerf           = useRef(null);
 
-  useEffect(() => { startedAt.current = Date.now(); }, []);
+  // Clock-independent timer, set in the browser only when the form mounts.
+  useEffect(() => { startedPerf.current = performance.now(); }, []);
 
   const change = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
@@ -62,16 +64,16 @@ export default function ContactPage({ settings }) {
           subject:       form.subject.trim() || undefined,
           message:       form.message.trim(),
           sourcePage:    '/contact',
-          formStartedAt: startedAt.current,
-          website:       form.website, // honeypot
+          elapsedMs:     startedPerf.current == null ? undefined : Math.round(performance.now() - startedPerf.current),
+          extra_note:    form.extra_note, // honeypot
         }),
       });
 
       const data = await res.json().catch(() => ({}));
 
       if (res.status === 201 || (res.ok && data.success)) {
-        setForm({ name: '', phone: '', email: '', subject: '', message: '', website: '' });
-        startedAt.current = Date.now();
+        setForm(EMPTY);
+        startedPerf.current = performance.now();
         setResult({ ok: true, msg: 'Thank you! We received your message and will be in touch shortly.' });
       } else if (res.status === 429) {
         setResult({ ok: false, msg: 'Too many requests. Please wait a moment and try again.' });
@@ -171,13 +173,14 @@ export default function ContactPage({ settings }) {
 
               <form onSubmit={submit} className="contact-validation-active" noValidate>
                 {/* Honeypot — visually hidden */}
-                <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }} aria-hidden="true">
-                  <label htmlFor="website">Leave this empty</label>
+                <div style={{ position: 'absolute', left: '-9999px', height: 0, overflow: 'hidden' }} aria-hidden="true">
+                  <label htmlFor="extra_note">Leave this empty</label>
                   <input
-                    id="website"
-                    name="website"
+                    id="extra_note"
+                    name="extra_note"
+                    aria-hidden="true"
+                    value={form.extra_note}
                     type="text"
-                    value={form.website}
                     onChange={change}
                     tabIndex={-1}
                     autoComplete="off"

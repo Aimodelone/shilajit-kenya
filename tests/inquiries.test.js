@@ -234,28 +234,31 @@ async function main() {
       const stored = await Inquiry.findOne({ name: uid });
       check('honeypot: nothing stored', !stored, stored ? `Found: ${stored._id}` : ''); }
 
-    { const r = await post({ name: 'zztest-hp-empty', phone: '+254712345678', message: 'Legit.', website: '' });
-      check('website "" treated as normal request → 201', r.status === 201, `Got ${r.status}`); }
+    { const uid = `zztest-honeypot2-${Date.now()}`;
+      const r = await post({ name: uid, phone: '+254712345678', message: 'Spam.', extra_note: 'spam' });
+      check('extra_note "spam" → 200', r.status === 200, `Got ${r.status}`);
+      const stored = await Inquiry.findOne({ name: uid });
+      check('extra_note honeypot: nothing stored', !stored, stored ? `Found: ${stored._id}` : ''); }
+
+    { const r = await post({ name: 'zztest-hp-empty', phone: '+254712345678', message: 'Legit.', website: '', extra_note: '' });
+      check('empty honeypots treated as normal request → 201', r.status === 201, `Got ${r.status}`); }
 
     // ── Time check ─────────────────────────────────────────────────────────────
     console.log('\n-- Time check --');
     { const uid = `zztest-time-now-${Date.now()}`;
-      const r = await post({ name: uid, phone: '+254712345678', message: 'Too fast.', formStartedAt: Date.now() });
-      check('formStartedAt = now → 200 (bot)', r.status === 200, `Got ${r.status}`);
+      const r = await post({ name: uid, phone: '+254712345678', message: 'Too fast.', elapsedMs: 500 });
+      check('elapsedMs = 500 → 200 (bot)', r.status === 200, `Got ${r.status}`);
       const stored = await Inquiry.findOne({ name: uid });
-      check('time=now: nothing stored', !stored, stored ? 'Found!' : ''); }
+      check('elapsedMs=500: nothing stored', !stored, stored ? 'Found!' : ''); }
 
-    { const uid = `zztest-time-future-${Date.now()}`;
-      const r = await post({ name: uid, phone: '+254712345678', message: 'Future ts.', formStartedAt: Date.now() + 60000 });
-      check('formStartedAt = now+60000 → 200 (bot)', r.status === 200, `Got ${r.status}`);
-      const stored = await Inquiry.findOne({ name: uid });
-      check('time=future: nothing stored', !stored, stored ? 'Found!' : ''); }
+    { const r = await post({ name: 'zztest-time-future', phone: '+254712345678', message: 'Future ts ignored.', formStartedAt: Date.now() + 60000, elapsedMs: 10000 });
+      check('future formStartedAt is ignored → 201', r.status === 201, `Got ${r.status}`); }
 
-    { const r = await post({ name: 'zztest-time-ok', phone: '+254712345678', message: 'Normal.', formStartedAt: Date.now() - 10000 });
-      check('formStartedAt = now-10000 → 201', r.status === 201, `Got ${r.status}`); }
+    { const r = await post({ name: 'zztest-time-ok', phone: '+254712345678', message: 'Normal.', elapsedMs: 10000 });
+      check('elapsedMs = 10000 → 201', r.status === 201, `Got ${r.status}`); }
 
     { const r = await post({ name: 'zztest-time-none', phone: '+254712345678', message: 'No ts.' });
-      check('no formStartedAt → 201', r.status === 201, `Got ${r.status}`); }
+      check('no elapsedMs → 201', r.status === 201, `Got ${r.status}`); }
 
     // ── Rate limit ─────────────────────────────────────────────────────────────
     console.log('\n-- Rate limit --');

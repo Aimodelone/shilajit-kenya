@@ -1,0 +1,26 @@
+/* Makes the banner identical whatever heading tag is used (h1 or h2).
+   Mirrors the template's `.wpo-page-title .wpo-breadcumb-wrap h2` rules. */
+.title {
+  font-size: 60px;
+  color: #fff;
+  line-height: 60px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.crumbs li,
+.crumbs li a {
+  color: #fff;
+}
+
+.crumbs li::after {
+  background: #fff;
+}
+
+@media (max-width: 767px) {
+  .title {
+    font-size: 30px;
+    line-height: 35px;
+    margin-bottom: 10px;
+  }
+}
