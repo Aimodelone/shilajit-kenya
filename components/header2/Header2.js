@@ -4,12 +4,11 @@ import HeaderTopbar from '../HeaderTopbar/HeaderTopbar'
 import MobileMenu from '../MobileMenu/MobileMenu'
 import Logo from '/public/images/logo2.png'
 import Image from 'next/image'
+import useSiteSettings from '../../lib/useSiteSettings.js'
 
 const Header2 = (props) => {
     const [menuActive, setMenuState] = useState(false);
-    const SubmitHandler = (e) => {
-        e.preventDefault()
-    }
+    const settings = useSiteSettings();
 
     const ClickHandler = () => {
         window.scrollTo(10, 0);
@@ -41,17 +40,16 @@ const Header2 = (props) => {
                                             <Link onClick={ClickHandler} href="/">Home</Link>
                                         </li>
                                         <li><Link onClick={ClickHandler} href="/about">About us</Link></li>
-                                        <li className="menu-item-has-children">
-                                            <Link onClick={ClickHandler} href="/">Pages</Link>
-                                            <ul className="sub-menu">
-                                                <li><Link onClick={ClickHandler} href="/gallery">Gallery</Link></li>
-                                                <li><Link onClick={ClickHandler} href="/team">Products</Link></li>
-                                                <li><Link onClick={ClickHandler} href="/faq">FAQ</Link></li>
-                                            </ul>
+                                        <li>
+                                            <Link onClick={ClickHandler} href="/products">Products</Link>
+                                        </li>
+                                        <li>
+                                            <Link onClick={ClickHandler} href="/benefits">Benefits</Link>
                                         </li>
                                         <li className="menu-item-has-children">
                                             <Link onClick={ClickHandler} href="/blog">Blog</Link>
                                         </li>
+                                        <li><Link onClick={ClickHandler} href="/faq">FAQ</Link></li>
                                         <li><Link onClick={ClickHandler} href="/contact">Contact</Link></li>
                                     </ul>
                                 </div>
@@ -60,8 +58,20 @@ const Header2 = (props) => {
                                 <div className="header-right">
                                     <div className="social">
                                         <ul>
-                                            <li><Link href="https://facebook.com/shilajitkenya"><i className="fi flaticon-facebook-app-symbol"></i></Link></li>
-                                            <li><Link href="https://instagram.com/shilajitkenya"><i className="fi flaticon-instagram-1"></i></Link></li>
+                                            {settings.socialLinks?.facebook && (
+                                            <li>
+                                                <Link href={settings.socialLinks.facebook}>
+                                                    <i className="fi flaticon-facebook-app-symbol"></i>
+                                                </Link>
+                                            </li>
+                                            )}
+                                            {settings.socialLinks?.instagram && (
+                                            <li>
+                                                <Link href={settings.socialLinks.instagram}>
+                                                    <i className="fi flaticon-instagram-1"></i>
+                                                </Link>
+                                            </li>
+                                            )}
                                         </ul>
                                     </div>
                                 </div>

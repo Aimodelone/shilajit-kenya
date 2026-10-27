@@ -1,0 +1,155 @@
+/* BenefitsSection.module.css — card grid for Shilajit benefits */
+
+/* The outer wrapper reuses .wpo-campaign-area from the global stylesheet
+   for the same dark background + vertical padding as the removed campaign section. */
+.section { /* no extra rules needed; class is additive */ }
+
+/* ── Responsive grid ───────────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 36px;
+}
+
+@media (max-width: 991px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 575px) {
+  .grid {
+    grid-template-columns: 1fr;
+    /* 360 px baseline — prevent horizontal scroll */
+    min-width: 0;
+  }
+}
+
+/* ── Card ──────────────────────────────────────────────────────────────────── */
+.card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  /* keyboard focus ring visible at card level */
+  outline-offset: 3px;
+}
+
+.card:hover,
+.card:focus-within {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.22);
+}
+
+/* ── Image area ────────────────────────────────────────────────────────────── */
+.imgLink {
+  display: block;
+  text-decoration: none;
+}
+
+.imgWrap {
+  position: relative;
+  width: 100%;
+  /* 4 : 3 aspect ratio */
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #111;
+  border-radius: 10px 10px 0 0;
+}
+
+/* Fallback for browsers without aspect-ratio support (< Safari 15, < Chrome 88) */
+@supports not (aspect-ratio: 1) {
+  .imgWrap {
+    aspect-ratio: unset;
+    padding-top: 75%; /* 4:3 */
+    height: 0;
+  }
+}
+
+.img {
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.card:hover .img {
+  transform: scale(1.05);
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+}
+
+/* ── Card content ──────────────────────────────────────────────────────────── */
+.content {
+  padding: 20px 22px 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Yellow category badge */
+.category {
+  display: inline-block;
+  background: #c9a84c;
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  margin: 0 0 10px;
+  font-weight: 700;
+}
+
+.title a {
+  color: #1a1a1a;
+  text-decoration: none;
+  /* keyboard focus handled by :focus-visible on <a> globally */
+}
+
+.title a:hover {
+  color: #c9a84c;
+}
+
+/* 3-line clamp for short description */
+.desc {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: #555;
+  margin: 0 0 16px;
+  flex: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.readMore {
+  display: inline-block;
+  color: #c9a84c;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  margin-top: auto;
+}
+
+.readMore:hover {
+  text-decoration: underline;
+}
+
+/* ── "View all" button row ─────────────────────────────────────────────────── */
+.viewAll {
+  text-align: center;
+  margin-top: 44px;
+}
