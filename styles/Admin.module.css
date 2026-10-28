@@ -369,6 +369,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 10px;
   margin: 20px 0;
   font-size: 13px;
@@ -540,16 +541,21 @@
 .inquiryContacts { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; font-size: 13px; }
 .inquiryContacts a { color: var(--adm-primary); text-decoration: none; }
 .inquiryContacts a:hover { text-decoration: underline; }
-.inquiryMsg     { font-size: 14px; color: #374151; margin-bottom: 8px; line-height: 1.6; }
+.inquiryMsg     { font-size: 14px; color: #374151; margin-bottom: 8px; line-height: 1.6; overflow-wrap: anywhere; word-break: break-word; }
 .inquiryActions { display: flex; gap: 8px; flex-wrap: wrap; }
 .showMore { background: none; border: none; color: var(--adm-primary); cursor: pointer; font-size: 12px; padding: 0; }
 
 /* ── Responsive ───────────────────────────────────────────────────────── */
 @media (max-width: 767px) {
-  /* Show mobile top bar */
-  .topbar { display: flex; }
+  /* ROOT FIX: wrap must stack vertically so the topbar is above main, not beside it.
+     (display:flex with default flex-direction:row put topbar and main side-by-side,
+      pushing main content off-screen to the right.) */
+  .wrap { display: block; }
 
-  /* Sidebar becomes off-canvas drawer, hidden by default */
+  /* Show mobile top bar — width:100% fills the now-block parent */
+  .topbar { display: flex; width: 100%; }
+
+  /* Sidebar becomes off-canvas drawer, hidden by default (still position:fixed) */
   .sidebar {
     transform: translateX(-100%);
     transition: transform .25s ease;
@@ -559,12 +565,25 @@
   }
   .sidebarOpen { transform: translateX(0); }
 
-  /* Main fills full width */
+  /* Main fills full width below the sticky topbar */
   .main {
     margin-left: 0;
-    max-width: 100vw;
+    width: 100%;
+    max-width: 100%;   /* 100vw can be wider than viewport when scrollbar exists */
+    min-width: 0;
     padding: 16px 12px;
+    box-sizing: border-box;
   }
+
+  /* Safety: nothing inside main should overflow */
+  .main input,
+  .main select,
+  .main textarea,
+  .main button,
+  .main img { max-width: 100%; }
+
+  /* Long text and URLs wrap instead of overflowing */
+  .main { overflow-wrap: anywhere; word-break: break-word; }
 
   /* Single-column form grids */
   .formGrid     { grid-template-columns: 1fr; }
@@ -574,6 +593,12 @@
   /* Cards fill width */
   .resourceGrid { grid-template-columns: 1fr; }
   .cardGrid     { grid-template-columns: repeat(2, 1fr); }
+
+  /* Pagination wraps on very narrow screens */
+  .pagination   { flex-wrap: wrap; gap: 6px; }
+
+  /* Toolbar search input fills width on phones */
+  .searchInput  { max-width: 100%; min-width: 0; }
 }
 
 @media (max-width: 480px) {
